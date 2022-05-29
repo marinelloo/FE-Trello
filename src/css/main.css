@@ -73,3 +73,68 @@ body {
     text-align: center;
     margin-left: 50px;
 }
+/* Стили для карточки в ToDo */
+.card__todo{
+    display: flex;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    padding: 15px;
+    border: #000 solid 1px;
+}
+.card__todo-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card__todo-title, .card__inprogress-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+}
+.card__todo-description, .card__inprogress-description{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+.card__todo-author {
+    width: 30px;
+    height: 30px;
+}
+.card__todo-move, .card__inprogress-move {
+    color: #000;
+}
+.card__todo-move:hover {
+    color: darkgrey;
+}
+.card__todo-edit, .card__todo-delete {
+    color: #000;
+}
+.card__todo-edit :hover, .card__todo-delete :hover {
+    color: darkgrey;
+}
+.card__todo-edit {
+    display: flex;
+}
+/* Стили для карточки в InProgress */
+.card__inprogress {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    padding: 15px;
+    border: #000 solid 1px;
+}
+.card__inprogress-header {
+    display: flex;
+    justify-content: space-between;
+}
+.card__inprogress-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card__inprogress-move:hover {
+    color: darkgrey;
+}
