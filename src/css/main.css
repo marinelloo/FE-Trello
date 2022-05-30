@@ -24,8 +24,8 @@ body {
 }
 
 .pop-up {
-	max-width: 500px;
-	padding: 20px;
+	max-width: 400px;
+	padding: 15px;
 	background-color: #fff;
 	border-radius: 5px;
 }
@@ -63,18 +63,18 @@ body {
 }
 
 .pop-up__image {
-	width: 120px;
-	height: 120px;
+	width: 110px;
+	height: 110px;
 }
 
 .pop-up__text-wrap {
-	margin-top: 40px;
+	margin-top: 30px;
 	text-align: center;
 }
 
 .pop-up__buttons-wrap {
-	margin-top: 45px;
-	margin-bottom: 25px;
+	margin-top: 30px;
+	margin-bottom: 10px;
 	display: flex;
 	justify-content: center;
 	gap: 15px;
@@ -114,4 +114,55 @@ body {
 
 .btn--dark:active {
 	background-color: #cd1818;
+}
+
+.btn-inprogress--light {
+	background-color: #e41b1b;
+}
+
+.btn-inprogress--light:hover {
+	background-color: #cd1818;
+}
+
+.btn-inprogress--light:active {
+	background-color: #b71515;
+}
+
+
+.btn-inprogress--light {
+	background-color: #e41b1b;
+}
+
+.btn-inprogress--light:hover {
+	background-color: #cd1818;
+}
+
+.btn-inprogress--light:active {
+	background-color: #b71515;
+}
+
+
+.btn-inprogress--light {
+	background-color: #e41b1b;
+}
+
+.btn-inprogress--light:hover {
+	background-color: #cd1818;
+}
+
+.btn-inprogress--light:active {
+	background-color: #b71515;
+}
+
+
+.btn-inprogress--dark {
+	background-color: #21ba45;
+}
+
+.btn-inprogress--dark:hover {
+	background-color: #1fad40;
+}
+
+.btn-inprogress--dark:active {
+	background-color: #1b9838;
 }
