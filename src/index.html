@@ -2,33 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="./images/favicon.ico.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <title>Trello</title>
+	 <link rel="preconnect" href="https://fonts.googleapis.com">
+	 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/main.css">
+	<link rel="icon" href="./images/favicon.ico.svg">
 </head>
 <body>
 <header class="header">
-    <div class="header__wrapper">
-        <div class="header__board">
-            <p class="header__board-txt">John Smith's Board</p>
-        </div>
-        <a href="" class="header__logo">
-            <img src="images/logo.png" alt="logo" class="header__logo">
-        </a>
-        <div class="wrapper">
-            <div class="search__box">
-                <input type="text" class="search__txt" placeholder="Search...">
-                <a href="#" class="search__btn"><i class="search icon"></i></a>
-            </div>
-            <div class="user__icon">
-                <img src="images/user.png" alt="user" class="user__icon-foto">
-            </div>
-        </div>
-    </div>
+	<div class="header__wrapper">
+		<div class="header__board">
+			<p class="header__board-txt">John Smith's Board</p>
+		</div>
+		<a href="" class="header__logo">
+			<img src="images/logo.png" alt="logo" class="header__logo">
+		</a>
+		<div class="wrapper">
+			<div class="search__box">
+				<input type="text" class="search__txt" placeholder="Search...">
+				<a href="#" class="search__btn"><i class="search icon"></i></a>
+			</div>
+			<div class="user__icon">
+				<img src="images/user.png" alt="user" class="user__icon-foto">
+			</div>
+		</div>
+	</div>
 </header>
-
+	<div class="pop-up">
+		<div class="container">
+			<div class="pop-up__close-button-wrap">
+				<button class="pop-up__close-button">&times;</button>
+			</div>
+			<div class="pop-up__image-wrap">
+				<img src="./images/remove.png" alt="remove-icon" class="pop-up__image">
+			</div>
+			<div class="pop-up__text-wrap">
+				<h1 class="title1">Are you sure?</h1>
+				<h2 class="title2">Do you really want to delete these records? This process cannot be undone.</h2>
+			</div>
+			<div class="pop-up__buttons-wrap">
+				<button class="btn btn--light">Cancel</button>
+				<button class="btn btn--dark">Delete</button>
+			</div>
+		</div>
+	</div>
+	<!-- This margin-remove class just creates top margin for visual preview -->
+	<div class="pop-up margin-remove"> 
+		<div class="container">
+			<div class="pop-up__close-button-wrap">
+				<button class="pop-up__close-button">&times;</button>
+			</div>
+			<div class="pop-up__image-wrap">
+				<img src="./images/remove.png" alt="remove-icon" class="pop-up__image">
+			</div>
+			<div class="pop-up__text-wrap">
+				<h1 class="title1">Are you sure?</h1>
+				<h2 class="title2">You are trying to add more than 6 tasks into «In Progress» column.</h2>
+			</div>
+			<div class="pop-up__buttons-wrap">
+				<button class="btn btn-inprogress--light">Cancel</button>
+				<button class="btn btn-inprogress--dark">Confirm</button>
+			</div>
+		</div>
+	</div>
 <script src="./js/main.js"></script>
 </body>
 </html>
