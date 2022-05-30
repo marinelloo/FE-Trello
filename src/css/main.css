@@ -37,6 +37,7 @@ body {
 .pop-up__close-button-wrap {
 	display: flex;
 	justify-content: flex-end;
+
 }
 
 .pop-up__close-button {
@@ -47,6 +48,7 @@ body {
 	font-size: 35px;
 	border: none;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .pop-up__close-button:hover {
@@ -90,6 +92,7 @@ body {
 	font-size: 22px;
 	border: none;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .btn--light {
