@@ -251,4 +251,102 @@ i.icon {
 	background-color: #1b9838;
 }
 
+.trello-card{
+	background-color:#eceeed;
+	border-radius: 15px;
+	max-width: 600px;
+	color: #565151;
+	overflow: hidden;
+}
 
+.gradient-line {
+	height: 20px;
+	background: linear-gradient(90deg, #99B4E3, #7CE0D8);
+}
+
+.card-container{
+	padding: 30px;
+}
+.card-title{
+	margin-bottom: 10px;
+	padding-left: 20px;
+}
+
+.title3{
+	font-size: 24px;
+	font-weight: 600;
+	font-family: 'Roboto', sans-serif;
+}
+.card-description{
+	margin-bottom: 15px;
+}
+.card-input{
+		font-size: 16px;
+		font-weight: 400;
+		font-family: 'Roboto', sans-serif;
+		padding-top: 15px;
+		padding-left: 15px;
+		border: none;
+		width: 100%;
+}
+.card-input{
+	resize: none;
+	border-radius: 15px;
+}
+.card-button{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	background-color: white;
+	font-size: 20px;
+	border: none;
+	border-radius: 10px;
+	padding: 0 20px;
+	color: #565151;
+	cursor: pointer;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	min-height: 50px;
+	margin-right: 20px;
+}
+
+.card-button---grey:hover{
+	background-color:#cae9ec ;
+}
+
+.card-button---blue:hover {
+	background-color: #f49090;
+}
+
+.card-button---grey:active {
+	background-color: #a0e7ed;
+}
+
+.card-button---blue:active {
+	background-color: #e87777;
+}
+
+.card-button:last-child{
+	margin-right: 0px;
+}
+
+.card-control{
+	display: flex;
+	justify-content: space-between;
+
+}
+.card-select-user{
+font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	background-color: white;
+	font-size: 20px;
+	border: none;
+	border-radius: 10px;
+	padding: 0 20px;
+	color: #565151;
+	cursor: pointer;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	min-height: 50px;
+}
