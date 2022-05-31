@@ -9,26 +9,25 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-<header class="header">
-    <div class="header__wrapper">
-        <div class="header__board">
-            <p class="header__board-txt">John Smith's Board</p>
+<div class="wrapper__dashboard">
+    <div class="dashboard dashboard__toDo">
+        <div class="dashboard__content">
+            <h2 class="dashboard__title">To Do</h2>
         </div>
-        <a href="" class="header__logo">
-            <img src="images/logo.png" alt="logo" class="header__logo">
-        </a>
-        <div class="wrapper">
-            <div class="search__box">
-                <input type="text" class="search__txt" placeholder="Search...">
-                <a href="#" class="search__btn"><i class="search icon"></i></a>
-            </div>
-            <div class="user__icon">
-                <img src="images/user.png" alt="user" class="user__icon-foto">
-            </div>
+        <button class="btn__dashboard btn__add">Add task</button>
+    </div>
+    <div class="dashboard dashboard__inProgress">
+        <div class="dashboard__content">
+            <h2 class="dashboard__title">In Progress</h2>
         </div>
     </div>
-</header>
-
+    <div class="dashboard dashboard__done">
+        <div class="dashboard__content">
+            <h2 class="dashboard__title">Done</h2>
+        </div>
+        <button class="btn__dashboard btn__delete">Delete all</button>
+    </div>
+</div>
 <script src="./js/main.js"></script>
 </body>
 </html>
