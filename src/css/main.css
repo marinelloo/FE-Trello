@@ -359,4 +359,7 @@ i.icon {
 	background-color: #1b9838;
 }
 
+.ui.fluid.dropdown.user-select {
+	width: 30%;
+}
 

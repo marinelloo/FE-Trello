@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Trello</title>
-	 <link rel="preconnect" href="https://fonts.googleapis.com">
-	 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	 <link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/main.css">
 	<link rel="icon" href="./images/favicon.ico.svg">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js" integrity="sha512-MrA7WH8h42LMq8GWxQGmWjrtalBjrfIzCQ+i2EZA26cZ7OBiBd/Uct5S3NP9IBqKx5b+MMNH1PhzTsk6J9nPQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 <header class="header">
@@ -70,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn__dashboard btn__add">Add task</button>
+		<button class="btn__dashboard btn__add" id="btn-add">Add task</button>
 	</div>
 	<div class="dashboard dashboard__inProgress">
 		<div class="dashboard__content">
@@ -136,6 +139,39 @@
 			</div>
 		</div>
 	</div>
+<div class="ui modal">
+	<div class="header">Create ToDo</div>
+	<div class="content">
+		<form class="ui form">
+			<div class="required field">
+				<label>Title</label>
+				<input type="text" name="title" placeholder="Title">
+			</div>
+			<div class="required field">
+				<label>Description</label>
+				<textarea rows="2" name="description" placeholder="Description"></textarea>
+			</div>
+	</div>
+	<div class="actions">
+		<div class="ui fluid selection dropdown user-select">
+			<input type="hidden" name="user">
+			<i class="dropdown icon"></i>
+			<div class="default text">Select Friend</div>
+			<div class="menu">
+				<div class="item" data-value="jenny">
+					<img class="ui mini avatar image" src="./images/jenny.jpeg">
+					Jenny Hess
+				</div>
+				<div class="item" data-value="elliot">
+					<img class="ui mini avatar image" src="./images/elliot.jpeg">
+					Elliot Fu
+				</div>
+			</div>
+		</div>
+		<div class="ui cancel button">Cancel</div>
+		<div class="ui approve button">Confirm</div>
+	</div>
+</div>
 <script src="./js/main.js"></script>
 </body>
 </html>
