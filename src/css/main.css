@@ -74,21 +74,7 @@ body {
     margin-left: 50px;
 }
 /* Стили для карточки в ToDo */
-.card__todo{
-    display: flex;
-    width: 300px;
-    height: 200px;
-    margin: auto;
-    padding: 15px;
-    background-color: #edf2fb;
-    border-radius: 15px;
-    border: #000 solid 1px;
-}
-.card__todo-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 .card__todo-title, .card__inprogress-title {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -102,6 +88,13 @@ body {
 .card__todo-author {
     width: 30px;
     height: 30px;
+    margin-right: 10px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
 }
 .card__todo-move, .card__inprogress-move {
     color:  #5e6472;
@@ -116,26 +109,27 @@ body {
     color: darkgrey;
 }
 .card__todo-edit {
-    display: flex;
+    padding-right: 10px;
+    padding-top: 3px;
+    transition: 0.3s;
 }
 /* Стили для карточки в InProgress */
-.card__inprogress {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 200px;
-    margin: auto;
-    padding: 15px;
+
+.card__todo {
     background-color: #edf2fb;
+    width: 20%;
     border-radius: 15px;
-    border: #000 solid 1px;
+    padding: 15px;
+    margin-bottom: 20px;
 }
-.card__inprogress-header {
+
+.card_top {
     display: flex;
     justify-content: space-between;
 }
-.card__inprogress-options {
+
+.card_bottom {
+    padding-top: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
