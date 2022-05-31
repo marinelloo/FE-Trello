@@ -34,10 +34,10 @@
     <div class="card__todo-wrap">
         <h3 class="card__todo-title">Title for ToDo</h3>
         <p class="card__todo-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo doloremque libero culpa sequi nulla quod provident.</p>
-        <time class="card__todo-time">21:15</time>
+        <img src="images/user.png" alt="user" class="card__todo-author">
     </div>
     <div class="card__todo-wrapper">
-        <img src="images/user.png" alt="user" class="card__todo-author">
+        <time class="card__todo-time">21:15</time>
         <a href="#" class="card__todo-move"><i class="chevron right icon"></i></a>
         <div class="card__todo-edit">
             <a href="#" class="card__todo-edit"><i class="pencil alternate icon"></i></a>
@@ -49,18 +49,18 @@
 <div class="card__inprogress">
     <div class="card__inprogress-header">
         <h3 class="card__inprogress-title">Title for InProgress</h3>
-        <img src="images/user.png" alt="user" class="card__todo-author">
+        <time class="card__todo-time">21:15</time>
     </div>
     <p class="card__inprogress-description">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo doloremque libero culpa sequi nulla quod provident. 
     </p>
     <div class="card__inprogress-options">
-        <time class="card__todo-time">21:15</time>
-        <a href="#" class="card__inprogress-move"><i class="chevron left icon"></i></a>
-        <button class="ui right labeled icon button">
-            <i class="right arrow icon"></i>
-            Complete
-        </button>
+        <img src="images/user.png" alt="user" class="card__todo-author">
+        <div class="ui buttons">
+            <button class="ui button">Back</button>
+            <div class="or"></div>
+            <button class="ui positive button" style="background-color: #00afb9">Complete</button>
+        </div>
     </div>
 </div>
 <script src="./js/main.js"></script>

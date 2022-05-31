@@ -80,6 +80,8 @@ body {
     height: 200px;
     margin: auto;
     padding: 15px;
+    background-color: #edf2fb;
+    border-radius: 15px;
     border: #000 solid 1px;
 }
 .card__todo-wrapper{
@@ -102,13 +104,13 @@ body {
     height: 30px;
 }
 .card__todo-move, .card__inprogress-move {
-    color: #000;
+    color:  #5e6472;
 }
 .card__todo-move:hover {
     color: darkgrey;
 }
 .card__todo-edit, .card__todo-delete {
-    color: #000;
+    color:  #5e6472;
 }
 .card__todo-edit :hover, .card__todo-delete :hover {
     color: darkgrey;
@@ -124,6 +126,8 @@ body {
     height: 200px;
     margin: auto;
     padding: 15px;
+    background-color: #edf2fb;
+    border-radius: 15px;
     border: #000 solid 1px;
 }
 .card__inprogress-header {
@@ -134,7 +138,4 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.card__inprogress-move:hover {
-    color: darkgrey;
 }
