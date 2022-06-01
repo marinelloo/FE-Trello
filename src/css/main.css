@@ -6,8 +6,8 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
-	color: #666666;
-	background-color: #e2ecf6;
+	color: #87817F;
+	background-color: #EDEFF3;
 }
 
 .margin-remove {
@@ -28,6 +28,10 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
+.title4 {
+	color: #6dcda5;
+}
+
 i.icon {
 	height: 2em;
 }
@@ -39,6 +43,7 @@ i.icon {
 	align-items: center;
 	background-color: white;
 	margin-bottom: 10px;
+	box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.05);
 }
 .header__board {
 	margin-right: 100px;
@@ -120,7 +125,7 @@ i.icon {
 	border-top: 5px solid transparent;
 }
 .dashboard__toDo {
-	background: linear-gradient(#f6f8fc, #f6f8fc) padding-box, linear-gradient(90deg, rgba(158, 174, 230, 1) 0%, rgba(140, 201, 223, 1) 50%, rgba(125, 223, 216, 1) 100%) border-box;
+	background: linear-gradient(#F6F8FA, #F6F8FA) padding-box, linear-gradient(90deg, rgba(158, 174, 230, 1) 0%, rgba(140, 201, 223, 1) 50%, rgba(125, 223, 216, 1) 100%) border-box;
 }
 .dashboard__inProgress {
 	height: max-content;
@@ -133,29 +138,57 @@ i.icon {
 .dashboard__title {
 	padding-left: 10px;
 	padding-bottom: 10px;
-	color: lightslategrey;
+	color: #007AC3;
+	font-weight: bold;
 }
 .btn__dashboard {
 	padding: 10px;
 	width: 100%;
 	border: none;
-	background-color: #f6f8fc;
 	font-size: 20px;
-	align-items: end;
 	cursor: pointer;
-	color: lightslategrey;
-	border-radius: 5px;
+	color: #F6F8FA;
+	border-radius: 20px;
 	transition: 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.btn__dashboard:hover {
-	background-color: #ebecf0;
-	color: #4d5771
+
+.plus.icon {
+	height: 1em;
+	margin-bottom: 3px;
 }
+
+.btn__add {
+	background-color: #79E4B7;
+}
+
+.btn__dashboard.btn__add:hover {
+	background-color: #6dcda5;
+}
+
+.btn__dashboard.btn__add:active {
+	background-color: #61b692;
+}
+
+.btn__delete {
+	background-color: #FF7361;
+}
+
+.btn__delete:hover {
+	background-color: #e66857;
+}
+
+.btn__delete:active {
+	background-color: #e66857;
+}
+
 
 .card__todo-title, .card__inprogress-title {
 	font-family: 'Roboto', sans-serif;
-	font-weight: 900;
-	font-size: 19px;
+	font-weight: bold;
+	font-size: 22px;
 	padding-bottom: 10px;
 }
 .card__todo-description, .card__inprogress-description{
@@ -195,7 +228,7 @@ i.icon {
 /* Стили для карточки в InProgress */
 
 .card__todo {
-	background-color: #edf2fb;
+	background-color: white;
 	border-radius: 15px;
 	padding: 15px;
 	margin-bottom: 20px;
