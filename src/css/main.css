@@ -113,7 +113,7 @@ i.icon {
 	padding: 50px 100px;
 	display: flex;
 	column-gap: 50px;
-	justify-content: space-around;
+	align-items: start;
 }
 .dashboard {
 	display: flex;
@@ -183,8 +183,15 @@ i.icon {
 .btn__delete:active {
 	background-color: #e66857;
 }
-
-
+.dashboard__cards-todo {
+	min-height: 100px;
+}
+.dashboard__cards-inProgress {
+	min-height: 100px;
+}
+.dashboard__cards-done {
+	min-height: 100px;
+}
 .card__todo-title, .card__inprogress-title {
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
@@ -232,6 +239,7 @@ i.icon {
 	border-radius: 15px;
 	padding: 15px;
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 
 .card_top {
@@ -246,6 +254,7 @@ i.icon {
 }
 
 .pop-up {
+	margin: 0 auto;
 	max-width: 400px;
 	padding: 15px;
 	background-color: #fff;
