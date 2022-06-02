@@ -11,9 +11,6 @@ let containerTdo = document.querySelector('.dashboard__cards-todo');
 let containerInProgress = document.querySelector('.dashboard__cards-inProgress');
 let containerDone = document.querySelector('.dashboard__cards-done');
 
-let drake = dragula([containerTdo, containerInProgress, containerDone]);
+dragula([containerTdo, containerInProgress, containerDone]);
 
-drake.on('drag', function (el, target) {
-
-});
 

@@ -239,6 +239,7 @@ i.icon {
 	border-radius: 15px;
 	padding: 15px;
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 
 .card_top {
