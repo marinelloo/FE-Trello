@@ -1,7 +1,7 @@
 const btnAdd = document.getElementById('btn-add');
 
 btnAdd.addEventListener('click', () => {
-    $('.ui.modal').modal({blurring: true}).modal('show');
+    $('.ui.modal.add__todo').modal({blurring: true}).modal('show');
     $('.ui.dropdown').dropdown();
 })
 
