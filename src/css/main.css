@@ -293,7 +293,17 @@ i.icon {
 	display: flex;
 	justify-content: center;
 }
-
+.ui.medium.image {
+	margin: auto;
+	max-width: 100%;
+	padding: 30px 0 ;
+}
+.ui.image {
+	display: flex;
+}
+.container {
+	padding: 5px;
+}
 .pop-up__image {
 	width: 110px;
 	height: 110px;
@@ -325,7 +335,10 @@ i.icon {
 	cursor: pointer;
 	transition: 0.3s;
 }
-
+.ui.button {
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+}
 .btn--light {
 	background-color: #bfbfbf;
 }
@@ -348,57 +361,6 @@ i.icon {
 
 .btn--dark:active {
 	background-color: #cd1818;
-}
-
-.btn-inprogress--light {
-	background-color: #e41b1b;
-}
-
-.btn-inprogress--light:hover {
-	background-color: #cd1818;
-}
-
-.btn-inprogress--light:active {
-	background-color: #b71515;
-}
-
-
-.btn-inprogress--light {
-	background-color: #e41b1b;
-}
-
-.btn-inprogress--light:hover {
-	background-color: #cd1818;
-}
-
-.btn-inprogress--light:active {
-	background-color: #b71515;
-}
-
-
-.btn-inprogress--light {
-	background-color: #e41b1b;
-}
-
-.btn-inprogress--light:hover {
-	background-color: #cd1818;
-}
-
-.btn-inprogress--light:active {
-	background-color: #b71515;
-}
-
-
-.btn-inprogress--dark {
-	background-color: #21ba45;
-}
-
-.btn-inprogress--dark:hover {
-	background-color: #1fad40;
-}
-
-.btn-inprogress--dark:active {
-	background-color: #1b9838;
 }
 
 .ui.fluid.dropdown.user-select {
