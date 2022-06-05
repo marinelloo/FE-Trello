@@ -18,3 +18,8 @@ drake.on('drop', function(el, target, source, sibling) {
         $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
     }
 });
+
+
+// Philippov Pop ups
+
+let 
