@@ -253,7 +253,7 @@ i.icon {
 	justify-content: space-between;
 }
 
-.pop-up {
+.pop-up, .pop-up__delete-all {
 	margin: 0 auto;
 	max-width: 400px;
 	padding: 15px;

@@ -163,11 +163,8 @@
 		<button class="btn__dashboard btn__delete">Delete all</button>
 	</div>
 </div>
-	<div class="pop-up">
+	<div class="ui modal pop-up pop-up__delete-all">
 		<div class="container">
-			<div class="pop-up__close-button-wrap">
-				<button class="pop-up__close-button">&times;</button>
-			</div>
 			<div class="pop-up__image-wrap">
 				<img src="./images/remove.png" alt="remove-icon" class="pop-up__image">
 			</div>
@@ -175,9 +172,9 @@
 				<h1 class="title1">Are you sure?</h1>
 				<h2 class="title2">Do you really want to delete these records? This process cannot be undone.</h2>
 			</div>
-			<div class="pop-up__buttons-wrap">
-				<button class="btn btn--light">Cancel</button>
-				<button class="btn btn--dark">Delete</button>
+			<div class="actions pop-up__buttons-wrap">
+				<button class="negative ui btn btn--light">Cancel</button>
+				<button class="positive ui btn btn--dark">Delete</button>
 			</div>
 		</div>
 	</div>
