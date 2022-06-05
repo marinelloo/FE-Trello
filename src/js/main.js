@@ -24,7 +24,7 @@ drake.on('drop', function(el, target, source, sibling) {
 // Pop ups
 
 let cardsTodos = document.querySelectorAll(".card__todo");
-let trash = document.querySelector('.trash');
+let trash = document.querySelectorAll('.trash');
 let btnDeleteAll = document.querySelector('.btn__delete');
 let btnDeleteConfirm = document.querySelector('.btn--dark');
 let dashboardDone = document.querySelector('.dashboard__cards-done');
@@ -39,8 +39,8 @@ btnDeleteAll.addEventListener("click", (event) => {
 
 
 for(let i = 0; i < cardsTodos.length; i++) {
-	cardsTodos[i].addEventListener("click", (event) => {
-		if(event.target.toString() === trash.toString()) {
+	trash[i].addEventListener("click", (event) => {
+		if(event.target === trash[i]) {
 			cardsTodos[i].remove();
 		}
 	});
