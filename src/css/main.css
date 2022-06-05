@@ -207,6 +207,7 @@ i.icon {
 	width: 30px;
 	height: 30px;
 	margin-right: 10px;
+	border-radius: 50%;
 }
 
 .user {
@@ -231,6 +232,7 @@ i.icon {
 	padding-right: 10px;
 	padding-top: 3px;
 	transition: 0.3s;
+	color: #5e6472;
 }
 /* Стили для карточки в InProgress */
 
@@ -365,4 +367,28 @@ i.icon {
 
 .ui.fluid.dropdown.user-select {
 	width: 30%;
+}
+
+.ui.form{
+	font-size: 19px;
+}
+
+.gradient-line{
+	height: 20px;
+	background: linear-gradient(90deg, #99B4E3, #7CE0D8);
+}
+.ui.modal.add__todo{
+	border-radius: 20px;
+	/*overflow: hidden;*/
+}
+
+.ui.modal>.actions{
+	display: flex;
+	justify-content: space-between;
+	padding: 24px;
+}
+
+.ui.selection.dropdown{
+	text-align: left;
+	font-size: 19px;
 }
