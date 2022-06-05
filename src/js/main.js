@@ -44,3 +44,23 @@ for(let i = 0; i < cardsTodos.length; i++) {
 		}
 	});
 }
+
+
+// Search
+const searchModul = document.querySelector('.search__box');
+
+
+searchModul.addEventListener('keyup', (event) => {
+	const searchModul = document.querySelector(".search__txt");
+	const todosArr = document.querySelectorAll('.card__todo');
+	let input = searchModul.value;
+	input = input.toLowerCase();
+
+	for (const item of todosArr) {
+		if (!item.textContent.toLowerCase().includes(input)){
+			item.style.display = 'none';
+		} else {
+			item.style.display = 'block';
+		}
+	}
+})
