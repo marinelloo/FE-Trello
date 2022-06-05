@@ -207,6 +207,7 @@ i.icon {
 	width: 30px;
 	height: 30px;
 	margin-right: 10px;
+	border-radius: 50%;
 }
 
 .user {
@@ -323,18 +324,7 @@ i.icon {
 	transition: 0.3s;
 }
 
-.btn {
-	width: 150px;
-	height: 50px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
-	color: #fff;
-	font-size: 22px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 0.3s;
-}
+
 .ui.button {
 	font-size: 20px;
 	font-family: 'Roboto', sans-serif;
@@ -383,9 +373,10 @@ background: linear-gradient(90deg, #99B4E3, #7CE0D8);
 .ui.modal>.actions{
 	display: flex;
 	justify-content: space-between;
+	padding: 24px;
 }
 
 .ui.selection.dropdown{
-	text-align: center;
+	text-align: left;
 	font-size: 19px;
 }

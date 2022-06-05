@@ -1,10 +1,3 @@
-const btnAdd = document.getElementById('btn-add');
-
-btnAdd.addEventListener('click', () => {
-    $('.ui.modal.add__todo').modal({ blurring: true }).modal('show');
-    $('.ui.dropdown').dropdown();
-})
-
 // DragNDrop
 
 let containerTdo = document.querySelector('.dashboard__cards-todo');
@@ -19,22 +12,22 @@ drake.on('drop', function (el, target, source, sibling) {
     }
 });
 
+
 //Add New card
+
 let todos = [];
 
-const getImg = document.querySelector('.card__todo-author');
-
-
-const TodoConstructor = function (todoTitle, todoDescription, assignedPerson, img) {
+const TodoConstructor = function (todoTitle, todoDescription, todoImg, todoUser, todoId) {
     this.todoTitle = todoTitle;
     this.todoDescription = todoDescription;
-    this.assignedPerson = assignedPerson;
-    this.img = img;
+    this.todoImg = todoImg;
+    this.todoUser = todoUser;
+    this.todoId = todoId;
 }
 
 
 //Create Todo
-const createTodo = (todoTitle, todoDescription, assignedPerson, img) => {
+const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
     const todoCase = document.createElement("div");
     todoCase.className = "card__todo";
 
@@ -71,24 +64,22 @@ const createTodo = (todoTitle, todoDescription, assignedPerson, img) => {
     const todoAuthor = document.createElement("img");
     todoAuthor.className = "card__todo-author";
     const imgAtr = document.createAttribute('src');
-    imgAtr.value = img;
+    imgAtr.value = todoImg;
     todoAuthor.setAttributeNode(imgAtr);
 
     const todoUserName = document.createElement("p");
-    const todoUserNameText = document.createTextNode(assignedPerson);
+    const todoUserNameText = document.createTextNode(todoUser);
     todoUserName.className = "todo__user-name";
 
     const cardEdit = document.createElement("div");
-    cardEdit.className = "card__todo-edit";
+    cardEdit.className = "card__todo-buttons";
 
     const linkEdit = document.createElement("a");
-    //a.href = "#";
     linkEdit.className = "card__todo-edit";
     const linkEditPicture = document.createElement("i");
     linkEditPicture.className = "edit icon";
 
     const linkDelete = document.createElement("a");
-    //a.href = "#";
     linkDelete.className = "card__todo-delete";
     const linkDeletePicture = document.createElement("i");
     linkDeletePicture.className = "trash alternate icon";
@@ -104,8 +95,11 @@ const createTodo = (todoTitle, todoDescription, assignedPerson, img) => {
     linkDelete.append(linkDeletePicture);
     todoUserName.append(todoUserNameText);
 
+    todoCase.setAttribute('id', `${todoId}`);
+
     return todoCase;
 }
+
 
 //Get access
 const approveBtn = document.getElementById("approveBtn");
@@ -114,18 +108,27 @@ const inputTitle = document.getElementById('inputTitle');
 const inputDescription = document.getElementById('inputDescription');
 const assignedPerson = document.getElementById('assignedPerson');
 
+// Open add todo modal
 
-
+const btnAdd = document.getElementById('btn-add');
+btnAdd.addEventListener('click', () => {
+    inputTitle.value = '';
+    inputDescription.value = '';
+    $('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true}).modal('show');
+    $('.ui.dropdown').dropdown();
+})
 
 approveBtn.addEventListener('click', () => {
     const currentUser = $('#selection').dropdown('get value');
     const el = document.querySelector(`[data-value = ${currentUser}]`);
     const img = el.querySelector('.ui.mini.avatar.image').src;
+    const todoUser = el.textContent;
+    const todoId = Date.now();
 
-    const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, assignedPerson,img);
-    cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, assignedPerson, img));
+    const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, img, todoUser, todoId);
+    cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, img, todoUser, todoId));
     todos.push(todo);
-
 })
 
+// Edit todo
 
