@@ -22,15 +22,19 @@ drake.on('drop', function (el, target, source, sibling) {
 //Add New card
 let todos = [];
 
-const TodoConstructor = function (todoTitle, todoDescription, assignedPerson) {
+const getImg = document.querySelector('.card__todo-author');
+
+
+const TodoConstructor = function (todoTitle, todoDescription, assignedPerson, img) {
     this.todoTitle = todoTitle;
     this.todoDescription = todoDescription;
     this.assignedPerson = assignedPerson;
+    this.img = img;
 }
 
 
 //Create Todo
-const createTodo = (todoTitle, todoDescription, assignedPerson) => {
+const createTodo = (todoTitle, todoDescription, assignedPerson, img) => {
     const todoCase = document.createElement("div");
     todoCase.className = "card__todo";
 
@@ -66,6 +70,9 @@ const createTodo = (todoTitle, todoDescription, assignedPerson) => {
 
     const todoAuthor = document.createElement("img");
     todoAuthor.className = "card__todo-author";
+    const imgAtr = document.createAttribute('src');
+    imgAtr.value = img;
+    todoAuthor.setAttributeNode(imgAtr);
 
     const todoUserName = document.createElement("p");
     const todoUserNameText = document.createTextNode(assignedPerson);
@@ -108,11 +115,17 @@ const inputDescription = document.getElementById('inputDescription');
 const assignedPerson = document.getElementById('assignedPerson');
 
 
+
+
 approveBtn.addEventListener('click', () => {
-    //const todo = new TodoConstructor(inputTitle.value, inputDescription.name, assignedPerson);
-    //cardTodo.append(createTodo(inputTitle.value, inputDescription.name, assignedPerson));
-    const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, assignedPerson);
-    cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, assignedPerson));
+    const currentUser = $('#selection').dropdown('get value');
+    const el = document.querySelector(`[data-value = ${currentUser}]`);
+    const img = el.querySelector('.ui.mini.avatar.image').src;
+
+    const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, assignedPerson,img);
+    cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, assignedPerson, img));
     todos.push(todo);
-    //input.value = "";
+
 })
+
+

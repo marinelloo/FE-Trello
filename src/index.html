@@ -224,7 +224,7 @@
 		</div>
 	</div>
 
-	<div class="ui modal add__todo">
+	<div class="ui modal add__todo" id="modal_add">
 		<div class="gradient-line"></div>
 		<!--<div class="header">Create ToDo</div>-->
 		<div class="content">
@@ -241,12 +241,12 @@
 			</form>
 		</div>
 		<div class="actions">
-			<div class="ui fluid selection dropdown user-select">
+			<div class="ui fluid selection dropdown user-select" id="selection">
 				<input type="hidden" name="user">
 				<i class="dropdown icon"></i>
 				<div class="default text">Select Friend</div>
 				<div class="menu">
-					<div class="item" data-value="jenny" id="assignedPerson">
+					<div class="item" data-value="jenny">
 						<img class="ui mini avatar image" src="./images/jenny.jpeg">
 						Jenny Hess
 					</div>
