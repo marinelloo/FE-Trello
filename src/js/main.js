@@ -32,7 +32,7 @@ searchModul.addEventListener('keyup', (event) => {
         if (!item.textContent.toLowerCase().includes(input)){
             item.style.display = 'none';
         } else {
-            item.style.display = 'grid';
+            item.style.display = 'block';
         }
     }
 })
