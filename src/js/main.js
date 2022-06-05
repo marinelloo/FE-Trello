@@ -20,6 +20,7 @@ drake.on('drop', function(el, target, source, sibling) {
 });
 
 
+
 // Pop ups
 
 let cardsTodos = document.querySelectorAll(".card__todo");
@@ -47,6 +48,7 @@ for(let i = 0; i < cardsTodos.length; i++) {
 
 
 // Search
+
 const searchModul = document.querySelector('.search__box');
 
 
@@ -64,3 +66,4 @@ searchModul.addEventListener('keyup', (event) => {
 		}
 	}
 })
+
