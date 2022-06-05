@@ -40,7 +40,7 @@ btnDeleteAll.addEventListener("click", (event) => {
 
 for(let i = 0; i < cardsTodos.length; i++) {
 	cardsTodos[i].addEventListener("click", (event) => {
-		if(JSON.stringify(event.target) === JSON.stringify(trash)) {
+		if(event.target.toString() === trash.toString()) {
 			cardsTodos[i].remove();
 		}
 	});
