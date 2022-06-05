@@ -367,3 +367,25 @@ i.icon {
 	width: 30%;
 }
 
+.ui.form{
+	font-size: 19px;
+}
+
+.gradient-line{
+height: 20px;
+background: linear-gradient(90deg, #99B4E3, #7CE0D8);
+}
+.ui.modal.add__todo{
+	border-radius: 20px;
+	/*overflow: hidden;*/
+}
+
+.ui.modal>.actions{
+	display: flex;
+	justify-content: space-between;
+}
+
+.ui.selection.dropdown{
+	text-align: center;
+	font-size: 19px;
+}
