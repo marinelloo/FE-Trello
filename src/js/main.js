@@ -1,3 +1,9 @@
+let trash = document.querySelectorAll('.trash');
+let btnDeleteAll = document.querySelector('.btn__delete');
+let btnDeleteConfirm = document.querySelector('.btn--dark');
+let dashboardDone = document.querySelector('.dashboard__cards-done');
+let cardsTodos = document.querySelectorAll(".card__todo");
+
 const storage = {
 	// Получить все данные из хранилки по ключу
 	getDataByKey: function (key) {
@@ -29,12 +35,8 @@ drake.on('drop', function(el, target, source, sibling) {
     }
 });
 
-
 // Search
-
 const searchModul = document.querySelector('.search__box');
-
-
 searchModul.addEventListener('keyup', (event) => {
 	const searchModul = document.querySelector(".search__txt");
 	const todosArr = document.querySelectorAll('.card__todo');
@@ -62,7 +64,6 @@ const TodoConstructor = function (todoTitle, todoDescription, todoImg, todoUser,
 	this.todoId = todoId;
 }
 
-
 //Create Todo
 const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
 	const todoCase = document.createElement("div");
@@ -82,7 +83,6 @@ const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
 	const todoDescriptionCard = document.createElement("div");
 	todoDescriptionCard.className = "todo-description";
 	const todoDescriptionText = document.createTextNode(todoDescription);
-
 
 	todoCase.append(cardTop);
 	cardTop.append(todoTitleHead);
@@ -137,7 +137,6 @@ const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
 	return todoCase;
 }
 
-
 //Get access
 const approveBtn = document.getElementById("approveBtn");
 const cardTodo = document.getElementById("todoCase");
@@ -145,7 +144,6 @@ const inputTitle = document.getElementById('inputTitle');
 const inputDescription = document.getElementById('inputDescription');
 
 // Open add todo modal
-
 const btnAdd = document.getElementById('btn-add');
 btnAdd.addEventListener('click', () => {
 	inputTitle.value = '';
@@ -161,12 +159,10 @@ approveBtn.addEventListener('click', () => {
 	const todoUser = el.textContent;
 	const todoId = Date.now();
 
-	console.log(currentUser)
-
 	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, img, todoUser, todoId);
 	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, img, todoUser, todoId));
 	todos.push(todo);
-	storage.pushDataByKey('cards', todo)
+	storage.pushDataByKey('cards', todo);
 })
 
 // Edit todo
@@ -178,38 +174,27 @@ for(let i = 0; i < btnEditModal; i++) {
     })
 }
 
-
 // Pop ups
-
-
-let trash = document.querySelectorAll('.trash');
-let btnDeleteAll = document.querySelector('.btn__delete');
-let btnDeleteConfirm = document.querySelector('.btn--dark');
-let dashboardDone = document.querySelector('.dashboard__cards-done');
-let cardsTodos = document.querySelectorAll(".card__todo");
-
 const checkTodos = () => {
 	const cards = storage.getDataByKey('cards');
-	console.log(cards)
 	if (cards) {
-		todos.push(cards);
+		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId))];
+	}
+	for(let i = 0; i < todos.length; i++){
+		console.log(todos);
+		cardTodo.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId));
 	}
 }
 checkTodos();
 
+// Delete card
 btnDeleteConfirm.addEventListener("click", (event) => {
 	dashboardDone.innerHTML = '';
 });
 
 btnDeleteAll.addEventListener("click", (event) => {
 	$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
-	//let filteredData = data.filter(elem => elem.stage != btn.parentNode.parentNode.id)
-
-    //   localStorage.removeItem('cards')
-    //   storage.pushDataByKey('cards', filteredData)
-    //   localStorage.setItem('cards', JSON.stringify(filteredData));
 });
-
 
 for(let i = 0; i < cardsTodos.length; i++) {
 	trash[i].addEventListener("click", (event) => {
