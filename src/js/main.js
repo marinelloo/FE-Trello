@@ -7,9 +7,9 @@ let containerDone = document.querySelector('.dashboard__cards-done');
 let drake = dragula([containerTdo, containerInProgress, containerDone]);
 
 drake.on('drop', function(el, target, source, sibling) {
-    if (target === containerInProgress && target.children.length >= 6) {
-        $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
-    }
+   if (target === containerInProgress && target.children.length >= 6) {
+      $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
+   }
 });
 
 
@@ -180,3 +180,17 @@ for(let i = 0; i < cardsTodos.length; i++) {
 		}
 	});
 }
+
+// Swiper
+new Swiper('.swiper', {
+	pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      type: 'bullets',
+   },
+
+	sliderPerView:3,
+
+	spaceBetween: 30,
+
+}); 
