@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 	<link rel="stylesheet" href="./css/reset.css">
 	<link rel="stylesheet" href="./css/bootstrap-grid.css">
-   <link rel="stylesheet" href="./css/main.css">
+   	<link rel="stylesheet" href="./css/main.css">
 	<link rel="stylesheet" href="./css/responsive.css">
 	<link rel="icon" href="./images/favicon.ico.svg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.css">
@@ -103,7 +103,7 @@
 							<h2 class="title1 dashboard__title">In Progress</h2>
 						</div>
 						<div class="dashboard__cards-inProgress">
-							<div class="card__todo">
+							<div class="card__todo" draggable="true" ondragstart="drag">
 									<div class="card_top">
 										<h3 class="card__todo-title title4">Title for ToDo</h3>
 										<time class="card__todo-title">21:15</time>
@@ -209,7 +209,7 @@
 	</div>
 </div>
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-<script src="./js/main.js"></script>
+<script src="./js/main.js" type="module"></script>
 </body>
 </html>
 

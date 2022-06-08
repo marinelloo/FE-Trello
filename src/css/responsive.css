@@ -87,7 +87,7 @@
       min-width: 98px;
    }
    .ui.dropdown .menu .active.item {
-      font-style: 15px;
+      font-size: 15px;
    }
    .pop-up__image {
       width: 30%;
@@ -97,10 +97,10 @@
       margin-top: 15px;
    }
    .title1 {
-      font-style: 24px;
+      font-size: 24px;
    }
    .title2 {
-      font-style: 15px;
+      font-size: 15px;
    }
 
 }

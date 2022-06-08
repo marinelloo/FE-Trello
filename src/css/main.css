@@ -252,6 +252,7 @@ i.icon {
 	padding: 15px;
 	margin-bottom: 20px;
 	cursor: pointer;
+	touch-action: none;
 }
 
 .card_top {
@@ -402,3 +403,4 @@ i.icon {
 	text-align: left;
 	font-size: 19px;
 }
+

@@ -1,3 +1,5 @@
+import {swiper, init, swiperMode} from './responsive.js'
+
 // DragNDrop
 
 let containerTdo = document.querySelector('.dashboard__cards-todo');
@@ -183,30 +185,17 @@ for(let i = 0; i < cardsTodos.length; i++) {
 	});
 }
 
+
+
 // Swiper
-new Swiper('.swiper', {
-	pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      type: 'bullets',
-   },
+/* On Load*/
 
-	sliderPerView: 3,
-	spaceBetween: 30,
+window.addEventListener('load', function() {
+	swiperMode();
+});
 
-	breakpoints: {
-      320: {
-         slidesPerView: 1,
-			spaceBetween: 20
-      },
-      768: {
-         slidesPerView: 1,
-			spaceBetween: 20
-      },
-      992: {
-         slidesPerView: 3,
-			spaceBetween: 30
-      }
-   }
-}); 
+/* On Resize*/
+window.addEventListener('resize', function() {
+	swiperMode();
+});
 
