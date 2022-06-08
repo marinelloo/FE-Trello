@@ -15,23 +15,25 @@ drake.on('drop', function(el, target, source, sibling) {
 
 // Search
 
-const searchModul = document.querySelector('.search__box');
+const searchModul = document.querySelectorAll('.search__box');
 
+searchModul.forEach(it => {
+	it.addEventListener('keyup', (event) => {
+		const searchModul = event.target;
+		const todosArr = document.querySelectorAll('.card__todo');
+		let input = searchModul.value;
+		input = input.toLowerCase();
 
-searchModul.addEventListener('keyup', (event) => {
-	const searchModul = document.querySelector(".search__txt");
-	const todosArr = document.querySelectorAll('.card__todo');
-	let input = searchModul.value;
-	input = input.toLowerCase();
+		for (const item of todosArr) {
+			if (!item.textContent.toLowerCase().includes(input)){
+				item.style.display = 'none';
+			} else {
+				item.style.display = 'block';
+			};
+		};
+	});
+});
 
-	for (const item of todosArr) {
-		if (!item.textContent.toLowerCase().includes(input)){
-			item.style.display = 'none';
-		} else {
-			item.style.display = 'block';
-		}
-	}
-})
 
 //Add New card
 
@@ -189,8 +191,22 @@ new Swiper('.swiper', {
       type: 'bullets',
    },
 
-	sliderPerView:3,
-
+	sliderPerView: 3,
 	spaceBetween: 30,
 
+	breakpoints: {
+      320: {
+         slidesPerView: 1,
+			spaceBetween: 20
+      },
+      768: {
+         slidesPerView: 1,
+			spaceBetween: 20
+      },
+      992: {
+         slidesPerView: 3,
+			spaceBetween: 30
+      }
+   }
 }); 
+

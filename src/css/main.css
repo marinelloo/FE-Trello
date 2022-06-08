@@ -35,7 +35,7 @@ body {
 i.icon {
 	height: 2em;
 }
-.header {
+.header-area {
 	padding: 20px 40px;
 	background-color: white;
 	margin-bottom: 10px;
@@ -73,6 +73,7 @@ i.icon {
 	padding: 10px 20px;
 	transition: 0.3s;
 }
+
 .search__box:hover {
 	box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
