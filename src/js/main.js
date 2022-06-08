@@ -1,8 +1,19 @@
-let trash = document.querySelectorAll('.trash');
-let btnDeleteAll = document.querySelector('.btn__delete');
-let btnDeleteConfirm = document.querySelector('.btn--dark');
-let dashboardDone = document.querySelector('.dashboard__cards-done');
+import {createTodo} from './createCard.js'
+
+const trash = document.querySelector('.trash');
+const btnDeleteAll = document.querySelector('.btn__delete');
+const btnDeleteConfirm = document.querySelector('.btn--dark');
+const dashboardDone = document.querySelector('.dashboard__cards-done');
+const root = document.getElementById('root');
 let cardsTodos = document.querySelectorAll(".card__todo");
+
+const TodoConstructor = function (todoTitle, todoDescription, todoImg, todoUser, todoId) {
+	this.todoTitle = todoTitle;
+	this.todoDescription = todoDescription;
+	this.todoImg = todoImg;
+	this.todoUser = todoUser;
+	this.todoId = todoId;
+}
 
 const storage = {
 	// Получить все данные из хранилки по ключу
@@ -20,6 +31,7 @@ const storage = {
 	  localStorage.setItem(key, JSON.stringify(dataByKey));
 	},
   };
+
   
 // DragNDrop
 let containerTdo = document.querySelector('.dashboard__cards-todo');
@@ -52,90 +64,7 @@ searchModul.addEventListener('keyup', (event) => {
 	}
 })
 
-//Add New card
-
-let todos = [];
-
-const TodoConstructor = function (todoTitle, todoDescription, todoImg, todoUser, todoId) {
-	this.todoTitle = todoTitle;
-	this.todoDescription = todoDescription;
-	this.todoImg = todoImg;
-	this.todoUser = todoUser;
-	this.todoId = todoId;
-}
-
-//Create Todo
-const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
-	const todoCase = document.createElement("div");
-	todoCase.className = "card__todo";
-
-	const cardTop = document.createElement("div");
-	cardTop.className = "card_top";
-
-	const todoTitleHead = document.createElement("h3");
-	todoTitleHead.className = "card__todo-title title4";
-	const todoTitleText = document.createTextNode(todoTitle);
-
-	const todoDate = document.createElement("div");
-	const date = new Date().toLocaleTimeString();
-	todoDate.className = "card__todo-title";
-
-	const todoDescriptionCard = document.createElement("div");
-	todoDescriptionCard.className = "todo-description";
-	const todoDescriptionText = document.createTextNode(todoDescription);
-
-	todoCase.append(cardTop);
-	cardTop.append(todoTitleHead);
-	todoTitleHead.append(todoTitleText);
-	cardTop.append(todoDate);
-	todoDate.append(date);
-	todoDescriptionCard.append(todoDescriptionText);
-	todoCase.append(todoDescriptionCard);
-
-	const cardBottom = document.createElement("div");
-	cardBottom.className = "card_bottom";
-
-	const user = document.createElement("div");
-	user.className = "user";
-
-	const todoAuthor = document.createElement("img");
-	todoAuthor.className = "card__todo-author";
-	const imgAtr = document.createAttribute('src');
-	imgAtr.value = todoImg;
-	todoAuthor.setAttributeNode(imgAtr);
-
-	const todoUserName = document.createElement("p");
-	const todoUserNameText = document.createTextNode(todoUser);
-	todoUserName.className = "todo__user-name";
-
-	const cardEdit = document.createElement("div");
-	cardEdit.className = "card__todo-edit";
-
-	const linkEdit = document.createElement("a");
-	linkEdit.className = "card__todo-edit";
-	const linkEditPicture = document.createElement("i");
-	linkEditPicture.className = "edit icon";
-
-	const linkDelete = document.createElement("a");
-	linkDelete.className = "card__todo-delete";
-	const linkDeletePicture = document.createElement("i");
-	linkDeletePicture.className = "trash alternate icon";
-
-	todoCase.append(cardBottom);
-	cardBottom.append(user);
-	user.append(todoAuthor);
-	user.append(todoUserName);
-	cardBottom.append(cardEdit);
-	cardEdit.append(linkEdit);
-	cardEdit.append(linkDelete);
-	linkEdit.append(linkEditPicture);
-	linkDelete.append(linkDeletePicture);
-	todoUserName.append(todoUserNameText);
-
-	todoCase.setAttribute('id', `${todoId}`);
-
-	return todoCase;
-}
+let todos = JSON.parse(localStorage.getItem("cards")) || [];
 
 //Get access
 const approveBtn = document.getElementById("approveBtn");
@@ -181,11 +110,28 @@ const checkTodos = () => {
 		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId))];
 	}
 	for(let i = 0; i < todos.length; i++){
-		console.log(todos);
 		cardTodo.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId));
 	}
 }
+
 checkTodos();
+
+root.addEventListener('click', (event) => {
+	if (event.target.dataset.type === 'delete-one') {
+		const trelloId = document.getElementById('todo-id');
+		const currentTrello = event.target.closest('.card__todo');
+		if (todos.length) {
+			todos = todos.filter(todo => +todo.todoId !== +currentTrello.dataset.trelloId);
+			console.log(todos);
+			currentTrello.remove();
+			localStorage.setItem("cards", JSON.stringify(todos));
+			console.log(storage)
+		} else {
+			localStorage.clear();
+			trelloId.remove()
+		}
+	}
+})
 
 // Delete card
 btnDeleteConfirm.addEventListener("click", (event) => {
@@ -193,13 +139,22 @@ btnDeleteConfirm.addEventListener("click", (event) => {
 });
 
 btnDeleteAll.addEventListener("click", (event) => {
-	$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+	if (dashboardDone.children.length) {
+		$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+	} else {
+		// add maybe some message nothing to delete or throw error
+		return dashboardDone;
+	}
+
 });
 
-for(let i = 0; i < cardsTodos.length; i++) {
-	trash[i].addEventListener("click", (event) => {
-		if(event.target === trash[i]) {
-			cardsTodos[i].remove();
-		}
-	});
-}
+
+
+// for(let i = 0; i < cardsTodos.length; i++) {
+// 	trash[i].addEventListener("click", (event) => {
+// 		if(event.target === trash[i]) {
+// 			cardsTodos[i].remove();
+// 		}
+// 	});
+// }
+
