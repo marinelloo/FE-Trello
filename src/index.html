@@ -37,7 +37,7 @@
 
 	</div>
 </header>
-<div class="wrapper__dashboard">
+<div class="wrapper__dashboard" id="root">
 	<div class="dashboard dashboard__toDo">
 		<div class="dashboard__content">
 			<h2 class="title1 dashboard__title">To Do</h2>
@@ -187,7 +187,43 @@
 			</div>
 	</div>
 </div>
-<script src="./js/main.js"></script>
+
+<!-- Open modal edit card -->
+<div class="ui modal edit__todo">
+	<div class="header">Edit ToDo</div>
+	<div class="content">
+		<form class="ui form">
+			<div class="required field">
+				<label>Title</label>
+				<input type="text" name="title" placeholder="Title">
+			</div>
+			<div class="required field">
+				<label>Description</label>
+				<textarea rows="2" name="description" placeholder="Description"></textarea>
+			</div>
+		</form>
+	</div>
+	<div class="actions">
+		<div class="ui fluid selection dropdown user-select">
+			<input type="hidden" name="user">
+			<i class="dropdown icon"></i>
+			<div class="default text">Select Friend</div>
+			<div class="menu">
+				<div class="item" data-value="jenny">
+					<img class="ui mini avatar image" src="./images/jenny.jpeg">
+					Jenny Hess
+				</div>
+				<div class="item" data-value="elliot">
+					<img class="ui mini avatar image" src="./images/elliot.jpeg">
+					Elliot Fu
+				</div>
+			</div>
+		</div>
+		<div class="ui cancel button">Cancel</div>
+		<div class="ui approve button">Confirm</div>
+	</div>
+</div>
+<script src="./js/main.js" type="module"></script>
 </body>
 </html>
 
