@@ -1,3 +1,5 @@
+import {swiper, init, swiperMode} from './responsive.js'
+
 // DragNDrop
 
 let containerTdo = document.querySelector('.dashboard__cards-todo');
@@ -7,31 +9,33 @@ let containerDone = document.querySelector('.dashboard__cards-done');
 let drake = dragula([containerTdo, containerInProgress, containerDone]);
 
 drake.on('drop', function(el, target, source, sibling) {
-    if (target === containerInProgress && target.children.length >= 6) {
-        $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
-    }
+   if (target === containerInProgress && target.children.length >= 6) {
+      $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
+   }
 });
 
 
 // Search
 
-const searchModul = document.querySelector('.search__box');
+const searchModul = document.querySelectorAll('.search__box');
 
+searchModul.forEach(it => {
+	it.addEventListener('keyup', (event) => {
+		const searchModul = event.target;
+		const todosArr = document.querySelectorAll('.card__todo');
+		let input = searchModul.value;
+		input = input.toLowerCase();
 
-searchModul.addEventListener('keyup', (event) => {
-	const searchModul = document.querySelector(".search__txt");
-	const todosArr = document.querySelectorAll('.card__todo');
-	let input = searchModul.value;
-	input = input.toLowerCase();
+		for (const item of todosArr) {
+			if (!item.textContent.toLowerCase().includes(input)){
+				item.style.display = 'none';
+			} else {
+				item.style.display = 'block';
+			};
+		};
+	});
+});
 
-	for (const item of todosArr) {
-		if (!item.textContent.toLowerCase().includes(input)){
-			item.style.display = 'none';
-		} else {
-			item.style.display = 'block';
-		}
-	}
-})
 
 //Add New card
 
@@ -180,3 +184,18 @@ for(let i = 0; i < cardsTodos.length; i++) {
 		}
 	});
 }
+
+
+
+// Swiper
+/* On Load*/
+
+window.addEventListener('load', function() {
+	swiperMode();
+});
+
+/* On Resize*/
+window.addEventListener('resize', function() {
+	swiperMode();
+});
+

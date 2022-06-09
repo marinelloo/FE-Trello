@@ -35,15 +35,16 @@ body {
 i.icon {
 	height: 2em;
 }
-
-.header__wrapper {
+.header-area {
 	padding: 20px 40px;
-	display: flex;
-	justify-content: space-between ;
-	align-items: center;
 	background-color: white;
 	margin-bottom: 10px;
 	box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.05);
+}
+.header__wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .header__board {
 	margin-right: 100px;
@@ -72,6 +73,7 @@ i.icon {
 	padding: 10px 20px;
 	transition: 0.3s;
 }
+
 .search__box:hover {
 	box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
@@ -99,6 +101,10 @@ i.icon {
 	font-size: 12px;
 	width: 100%;
 }
+.wrapper-mobile {
+	display: none;
+	background-color: #fff;
+}
 .user__icon-foto {
 	height: 40px;
 	width: 40px;
@@ -108,18 +114,22 @@ i.icon {
 	text-align: center;
 	margin-left: 50px;
 }
-
+.user__icon-mobile {
+	display: none;
+}
 .wrapper__dashboard {
 	padding: 50px 100px;
 	display: flex;
 	column-gap: 50px;
 	align-items: start;
 }
+
 .dashboard {
 	display: flex;
 	flex-direction: column;
 	padding: 20px 7px;
 	width: 100%;
+	min-width: 0;
 	box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 	border-radius: 5px;
 	border-top: 5px solid transparent;
@@ -242,6 +252,7 @@ i.icon {
 	padding: 15px;
 	margin-bottom: 20px;
 	cursor: pointer;
+	touch-action: none;
 }
 
 .card_top {
@@ -303,7 +314,7 @@ i.icon {
 .ui.image {
 	display: flex;
 }
-.container {
+.container__pop-up {
 	padding: 5px;
 }
 .pop-up__image {
@@ -392,3 +403,4 @@ i.icon {
 	text-align: left;
 	font-size: 19px;
 }
+
