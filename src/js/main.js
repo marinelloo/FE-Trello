@@ -1,5 +1,17 @@
 import {swiper, init, swiperMode} from './responsive.js'
 
+swiperMode();
+
+window.addEventListener('load', function() {
+	swiperMode();
+});
+
+/* On Resize*/
+window.addEventListener('resize', function() {
+	swiperMode();
+});
+
+
 // DragNDrop
 
 let containerTdo = document.querySelector('.dashboard__cards-todo');
@@ -190,12 +202,4 @@ for(let i = 0; i < cardsTodos.length; i++) {
 // Swiper
 /* On Load*/
 
-window.addEventListener('load', function() {
-	swiperMode();
-});
-
-/* On Resize*/
-window.addEventListener('resize', function() {
-	swiperMode();
-});
 

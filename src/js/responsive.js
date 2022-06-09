@@ -16,16 +16,14 @@ export const swiperMode = () => {
                     type: 'bullets',
                 },
 
-                sliderPerView: 3,
-                spaceBetween: 30,
-
+                sliderPerView: 1,
                 breakpoints: {
                     320: {
                         slidesPerView: 1,
                         spaceBetween: 20
                     },
                     768: {
-                        slidesPerView: 1,
+                        slidesPerView: 2,
                         spaceBetween: 20
                     },
                     992: {
@@ -37,10 +35,10 @@ export const swiperMode = () => {
         }
 
     } else if (tablet.matches) {
-        $('.swiper-wrapper').addClass( "disabled" );
+        $('.swiper').addClass( "disabled" );
         init = false;
     } else if (desktop.matches) {
-        $('.swiper-wrapper').addClass( "disabled" );
+        $('.swiper').addClass( "disabled" );
         init = false;
     }
 
