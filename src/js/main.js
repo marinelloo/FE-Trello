@@ -1,4 +1,4 @@
-// DragNDrop
+// DragNDropdashboard__cards-done
 
 let containerTdo = document.querySelector('.dashboard__cards-todo');
 let containerInProgress = document.querySelector('.dashboard__cards-inProgress');
@@ -92,14 +92,17 @@ const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
 	todoUserName.className = "todo__user-name";
 
 	const cardEdit = document.createElement("div");
-	cardEdit.className = "card__todo-edit";
+	cardEdit.className = "card__todo-buttons";
+	cardEdit.id = "linkEdit";
 
 	const linkEdit = document.createElement("a");
+	linkEdit.href = "#";
 	linkEdit.className = "card__todo-edit";
 	const linkEditPicture = document.createElement("i");
 	linkEditPicture.className = " edit icon";
 
 	const linkDelete = document.createElement("a");
+	linkDelete.href = "#";
 	linkDelete.className = "card__todo-delete";
 	const linkDeletePicture = document.createElement("i");
 	linkDeletePicture.className = "trash alternate icon";
@@ -177,18 +180,44 @@ for (let i = 0; i < cardsTodos.length; i++) {
 }
 
 // Edit todo
-const editButton = document.querySelectorAll('.card__todo-edit');
+const editButton = document.querySelector('.dashboard__cards-todo');
+editButton.addEventListener('click', (event) => {
+	
+})
 
-for (let i = 0; i < cardsTodos.length; i++) {
 
-	editButton[i].addEventListener("click", (event) => {
-		inputTitle.value = '';
-		inputDescription.value = '';
-		$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
-		$('.ui.dropdown').dropdown();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
+	//$('.ui.dropdown').dropdown();
+	//inputTitle.value = document.querySelector('.card__todo-title').innerHTML;
+	//inputDescription.value = document.querySelector('.todo-description').innerHTML;
+
+	//for (let i = 0; i < cardsTodos.length; i++) {
+
+	//editButton[i].addEventListener("click", (event) => {
+	//inputTitle.value = document.querySelector('.card__todo-title').innerHTML;
+	//inputDescription.value = document.querySelector('todo - description').innerHTML;
+	//$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
+	//$('.ui.dropdown').dropdown();
 
 		//if (event.target === editButton[i]) {
 		//cardsTodos[i].remove();
 		//});
-	})
-}
+	//})
+//}
