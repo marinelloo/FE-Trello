@@ -1,7 +1,6 @@
 import {swiper, init, swiperMode} from './responsive.js'
 
-swiperMode();
-
+// on load
 window.addEventListener('load', function() {
 	swiperMode();
 });
@@ -197,9 +196,5 @@ for(let i = 0; i < cardsTodos.length; i++) {
 	});
 }
 
-
-
-// Swiper
-/* On Load*/
 
 
