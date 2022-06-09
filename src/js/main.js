@@ -11,6 +11,8 @@ window.addEventListener('resize', function() {
 });
 
 
+
+
 // DragNDrop
 
 let containerTdo = document.querySelector('.dashboard__cards-todo');

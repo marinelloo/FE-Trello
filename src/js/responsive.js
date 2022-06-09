@@ -1,7 +1,7 @@
 
 
 export const swiperMode = () => {
-    let swiper= Swiper;
+    let swiper = Swiper;
     let init = false;
     let desktop = window.matchMedia('(min-width: 1025px)');
     let tablet = window.matchMedia('(min-width: 769px) and (max-width: 1024px)');
@@ -21,7 +21,7 @@ export const swiperMode = () => {
                 breakpoints: {
                     320: {
                         slidesPerView: 1,
-                        spaceBetween: 20
+                        spaceBetween: 20,
                     },
                     768: {
                         slidesPerView: 2,
@@ -33,6 +33,13 @@ export const swiperMode = () => {
                     }
                 }
             });
+            let cardCheck = document.querySelectorAll('.card__todo');
+            cardCheck.forEach(card => {
+                card.addEventListener('touchmove', (event) => {
+                    console.log('drag')
+                    swiper.slideNext(3500, false)
+                })
+            })
         }
 
     } else if (tablet.matches) {
@@ -42,5 +49,6 @@ export const swiperMode = () => {
         $('.swiper').addClass( "disabled" );
         init = false;
     }
+    return swiper;
 
 }
