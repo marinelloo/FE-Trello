@@ -6,10 +6,10 @@ let containerDone = document.querySelector('.dashboard__cards-done');
 
 let drake = dragula([containerTdo, containerInProgress, containerDone]);
 
-drake.on('drop', function(el, target, source, sibling) {
-    if (target === containerInProgress && target.children.length >= 6) {
-        $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
-    }
+drake.on('drop', function (el, target, source, sibling) {
+	if (target === containerInProgress && target.children.length >= 6) {
+		$('.ui.modal.pop-up__inprogress').modal({ blurring: true }).modal('show');
+	}
 });
 
 
@@ -25,7 +25,7 @@ searchModul.addEventListener('keyup', (event) => {
 	input = input.toLowerCase();
 
 	for (const item of todosArr) {
-		if (!item.textContent.toLowerCase().includes(input)){
+		if (!item.textContent.toLowerCase().includes(input)) {
 			item.style.display = 'none';
 		} else {
 			item.style.display = 'block';
@@ -97,7 +97,7 @@ const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
 	const linkEdit = document.createElement("a");
 	linkEdit.className = "card__todo-edit";
 	const linkEditPicture = document.createElement("i");
-	linkEditPicture.className = "edit icon";
+	linkEditPicture.className = " edit icon";
 
 	const linkDelete = document.createElement("a");
 	linkDelete.className = "card__todo-delete";
@@ -133,7 +133,7 @@ const btnAdd = document.getElementById('btn-add');
 btnAdd.addEventListener('click', () => {
 	inputTitle.value = '';
 	inputDescription.value = '';
-	$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true}).modal('show');
+	$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
 	$('.ui.dropdown').dropdown();
 })
 
@@ -151,12 +151,7 @@ approveBtn.addEventListener('click', () => {
 	todos.push(todo);
 })
 
-// Edit todo
-
-
-
 // Pop ups
-
 
 let trash = document.querySelectorAll('.trash');
 let btnDeleteAll = document.querySelector('.btn__delete');
@@ -169,14 +164,31 @@ btnDeleteConfirm.addEventListener("click", (event) => {
 });
 
 btnDeleteAll.addEventListener("click", (event) => {
-	$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+	$('.ui.modal.pop-up__delete-all').modal({ blurring: true }).modal('show');
 });
 
 
-for(let i = 0; i < cardsTodos.length; i++) {
+for (let i = 0; i < cardsTodos.length; i++) {
 	trash[i].addEventListener("click", (event) => {
-		if(event.target === trash[i]) {
+		if (event.target === trash[i]) {
 			cardsTodos[i].remove();
 		}
 	});
+}
+
+// Edit todo
+const editButton = document.querySelectorAll('.card__todo-edit');
+
+for (let i = 0; i < cardsTodos.length; i++) {
+
+	editButton[i].addEventListener("click", (event) => {
+		inputTitle.value = '';
+		inputDescription.value = '';
+		$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
+		$('.ui.dropdown').dropdown();
+
+		//if (event.target === editButton[i]) {
+		//cardsTodos[i].remove();
+		//});
+	})
 }
