@@ -1,7 +1,8 @@
-export var swiper= Swiper;
-export var init = false;
+
 
 export const swiperMode = () => {
+    let swiper= Swiper;
+    let init = false;
     let desktop = window.matchMedia('(min-width: 1025px)');
     let tablet = window.matchMedia('(min-width: 769px) and (max-width: 1024px)');
 

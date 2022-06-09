@@ -1,4 +1,4 @@
-import {swiper, init, swiperMode} from './responsive.js'
+import {swiperMode} from './responsive.js'
 
 // on load
 window.addEventListener('load', function() {
