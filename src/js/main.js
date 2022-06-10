@@ -1,13 +1,13 @@
-import {swiperMode} from './responsive.js'
-import {createTodo} from './createCard.js'
+import { swiperMode } from './responsive.js'
+import { createTodo } from './createCard.js'
 
 // on load
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 	swiperMode();
 });
 
 /* On Resize*/
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
 	swiperMode();
 });
 
@@ -21,10 +21,10 @@ const root = document.getElementById('root');
 
 let drake = dragula([containerTdo, containerInProgress, containerDone]);
 
-drake.on('drop', function(el, target, source, sibling) {
-   if (target === containerInProgress && target.children.length >= 6) {
-      $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
-   }
+drake.on('drop', function (el, target, source, sibling) {
+	if (target === containerInProgress && target.children.length >= 6) {
+		$('.ui.modal.pop-up__inprogress').modal({ blurring: true }).modal('show');
+	}
 });
 
 
@@ -40,7 +40,7 @@ searchModul.forEach(it => {
 		input = input.toLowerCase();
 
 		for (const item of todosArr) {
-			if (!item.textContent.toLowerCase().includes(input)){
+			if (!item.textContent.toLowerCase().includes(input)) {
 				item.style.display = 'none';
 			} else {
 				item.style.display = 'block';
@@ -77,7 +77,7 @@ const storage = {
 	},
 };
 
-let todos =  [];
+let todos = [];
 
 //Get access
 const approveBtn = document.getElementById("approveBtn");
@@ -91,27 +91,24 @@ const btnAdd = document.getElementById('btn-add');
 btnAdd.addEventListener('click', () => {
 	inputTitle.value = '';
 	inputDescription.value = '';
-	$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true}).modal('show');
+	$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
 	$('.ui.dropdown').dropdown();
 })
 
 // Edit todo
 
-const btnEditModal = document.querySelectorAll('.card__todo-edit').length;
-for(let i = 0; i < btnEditModal; i++) {
-	document.querySelectorAll('.card__todo-edit')[i].addEventListener('click', () => {
-		$('.ui.modal.add__todo').modal({blurring: true}).modal('show');
-		$('.ui.dropdown').dropdown();
-	})
-}
-
+//const btnEditModal = document.querySelectorAll('.card__todo-buttons').length;
+//for (let i = 0; i < btnEditModal; i++) {
+//document.querySelectorAll('.card__todo-edit')[i].addEventListener('click', () => {
+//})
+//}
 
 const checkTodos = () => {
 	const cards = storage.getDataByKey('cards');
 	if (cards) {
 		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId))];
 	}
-	for(let i = 0; i < todos.length; i++){
+	for (let i = 0; i < todos.length; i++) {
 		cardTodo.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId));
 	}
 }
@@ -157,12 +154,39 @@ root.addEventListener('click', (event) => {
 			localStorage.clear();
 			trelloId.remove()
 		}
+	} else if (event.target.dataset.type === 'edit-one') {
+		//const btnEditLength = document.querySelectorAll('.card__todo-edit');
+		//console.log(btnEditLength);
+		const trelloId = document.getElementById('todo-id');
+		const currentTrello = event.target.closest('.card__todo');
+		
+		$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true }).modal('show');
+		$('.ui.dropdown').dropdown();
+		inputTitle.value = document.querySelector('.card__todo-title').innerHTML;
+		inputDescription.value = document.querySelector('.todo-description').innerHTML;
 	}
 })
 
+//root.addEventListener('click', (event) => {
+//if (event.target.dataset.type === 'delete-one') {
+//const trelloId = document.getElementById('todo-id');
+//const currentTrello = event.target.closest('.card__todo');
+//if (todos.length) {
+//todos = todos.filter(todo => +todo.todoId !== +currentTrello.dataset.trelloId);
+//console.log(todos);
+//currentTrello.remove();
+//localStorage.setItem("cards", JSON.stringify(todos));
+//console.log(storage)
+//} else {
+//localStorage.clear();
+//trelloId.remove()
+//}
+//}
+//})
+
 btnDeleteConfirm.addEventListener("click", (event) => {
 	if (dashboardDone.children.length) {
-		$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+		$('.ui.modal.pop-up__delete-all').modal({ blurring: true }).modal('show');
 	} else {
 		// add maybe some message nothing to delete or throw error
 		return dashboardDone;
@@ -170,7 +194,7 @@ btnDeleteConfirm.addEventListener("click", (event) => {
 });
 
 btnDeleteAll.addEventListener("click", (event) => {
-	$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+	$('.ui.modal.pop-up__delete-all').modal({ blurring: true }).modal('show');
 });
 
 

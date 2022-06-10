@@ -1,4 +1,4 @@
-export {createTodo}
+export { createTodo }
 
 const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
     const todoCase = document.createElement("div");
@@ -44,12 +44,13 @@ const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
     todoUserName.className = "todo__user-name";
 
     const cardEdit = document.createElement("div");
-    cardEdit.className = "card__todo-edit";
+    cardEdit.className = "card__todo-buttons";
 
     const linkEdit = document.createElement("a");
     linkEdit.className = "card__todo-edit";
     const linkEditPicture = document.createElement("i");
     linkEditPicture.className = "edit icon";
+    linkEditPicture.dataset.type = "edit-one";
 
     const linkDelete = document.createElement("a");
     linkDelete.className = "card__todo-delete";
