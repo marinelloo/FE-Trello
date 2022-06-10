@@ -1,5 +1,3 @@
-
-
 export const swiperMode = () => {
     let swiper = Swiper;
     let init = false;
@@ -37,7 +35,7 @@ export const swiperMode = () => {
             cardCheck.forEach(card => {
                 card.addEventListener('touchmove', (event) => {
                     console.log('drag')
-                    swiper.slideNext(3500, false)
+                    swiper.slideNext(4000, false)
                 })
             })
         }

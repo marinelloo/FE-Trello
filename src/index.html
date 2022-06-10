@@ -50,7 +50,7 @@
 	</div>
 </header>
 <section class="section-dashboard">
-	<div class="wrapper__dashboard swiper">
+	<div class="wrapper__dashboard swiper" id="root">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 			<div class="dashboard dashboard__toDo">
@@ -75,23 +75,6 @@
 							</div>
 						</div>
 					</div>
-							<div class="card__todo">
-								<div class="card_top">
-									<h3 class="card__todo-title title4">Title for ToDo</h3>
-									<time class="card__todo-title">21:15</time>
-								</div>
-								<div>test2</div>
-								<div class="card_bottom">
-									<div class="user">
-										<img src="images/user.png" alt="user" class="card__todo-author">
-										<p>User Name</p>
-									</div>
-									<div class="card__todo-buttons">
-										<a href="#" class="card__todo-edit"><i class="edit icon"></i></a>
-										<a href="#" class="card__todo-delete"><i class="trash alternate icon"></i></a>
-									</div>
-								</div>
-							</div>
 						</div>
 						<button class="btn__dashboard btn__add" id="btn-add">
 							<i class="plus icon"></i>Add task</button>
@@ -170,6 +153,41 @@
 			</div>
 		</div>
 	</div>
+<!-- Open modal edit card -->
+<div class="ui modal edit__todo">
+	<div class="header">Edit ToDo</div>
+	<div class="content">
+		<form class="ui form">
+			<div class="required field">
+				<label>Title</label>
+				<input type="text" name="title" placeholder="Title">
+			</div>
+			<div class="required field">
+				<label>Description</label>
+				<textarea rows="2" name="description" placeholder="Description"></textarea>
+			</div>
+		</form>
+	</div>
+	<div class="actions">
+		<div class="ui fluid selection dropdown user-select">
+			<input type="hidden" name="user">
+			<i class="dropdown icon"></i>
+			<div class="default text">Select Friend</div>
+			<div class="menu">
+				<div class="item" data-value="jenny">
+					<img class="ui mini avatar image" src="./images/jenny.jpeg">
+					Jenny Hess
+				</div>
+				<div class="item" data-value="elliot">
+					<img class="ui mini avatar image" src="./images/elliot.jpeg">
+					Elliot Fu
+				</div>
+			</div>
+		</div>
+		<div class="ui cancel button">Cancel</div>
+		<div class="ui approve button">Confirm</div>
+	</div>
+</div>
 	<div class="ui modal add__todo" id="modal_add">
 		<div class="gradient-line"></div>
 		<!--<div class="header">Create ToDo</div>-->
