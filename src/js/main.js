@@ -149,10 +149,8 @@ root.addEventListener('click', (event) => {
 		const currentTrello = event.target.closest('.card__todo');
 		if (todos.length) {
 			todos = todos.filter(todo => +todo.todoId !== +currentTrello.dataset.trelloId);
-			console.log(todos);
 			currentTrello.remove();
 			localStorage.setItem("cards", JSON.stringify(todos));
-			console.log(storage)
 		} else {
 			localStorage.clear();
 			trelloId.remove()
@@ -160,17 +158,20 @@ root.addEventListener('click', (event) => {
 	}
 })
 
+
 btnDeleteConfirm.addEventListener("click", (event) => {
-	if (dashboardDone.children.length) {
 		$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
-	} else {
-		// add maybe some message nothing to delete or throw error
-		return dashboardDone;
-	}
+		todos = [];
+		dashboardDone.innerHTML = '';
+		localStorage.setItem("cards", JSON.stringify(todos));
 });
 
 btnDeleteAll.addEventListener("click", (event) => {
-	$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+	if (containerDone.children.length) {
+		$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
+	} else {
+		return containerDone;
+	}
 });
 
 
