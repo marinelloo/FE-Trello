@@ -11,9 +11,6 @@
    .wrapper__dashboard {
       padding: 50px 50px;
    }
-   .swiper-wrapper {
-      column-gap: 30px;
-   }
 }
 @media only screen and (max-width: 991px) {
    .header {
@@ -96,7 +93,7 @@
    .header__board-txt {
       font-size: 14px;
       width: 100px;
-      text-align: center;
+      text-align: left;
    }
    .pop-up, .pop-up__delete-all {
       margin: 0 auto;
