@@ -44,12 +44,13 @@ const createTodo = (todoTitle, todoDescription, todoImg, todoUser, todoId) => {
     todoUserName.className = "todo__user-name";
 
     const cardEdit = document.createElement("div");
-    cardEdit.className = "card__todo-edit";
+    cardEdit.className = "card__todo-btns";
 
     const linkEdit = document.createElement("a");
     linkEdit.className = "card__todo-edit";
     const linkEditPicture = document.createElement("i");
     linkEditPicture.className = "edit icon";
+    linkEditPicture.dataset.type = 'edit-card';
 
     const linkDelete = document.createElement("a");
     linkDelete.className = "card__todo-delete";

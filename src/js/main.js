@@ -1,5 +1,7 @@
 import {swiperMode} from './responsive.js'
 import {createTodo} from './createCard.js'
+import {randomNum, userAvatar, userName} from './usersGenerate.js'
+
 
 // on load
 window.addEventListener('load', function() {
@@ -9,6 +11,26 @@ window.addEventListener('load', function() {
 /* On Resize*/
 window.addEventListener('resize', function() {
 	swiperMode();
+});
+
+
+for (let i = 0; i < 6; i++) {
+	userAvatar(i);
+}
+
+let userArr = document.querySelectorAll('.item');
+
+userName().then(users => {
+	let newArr = users.map(user => user.name);
+	let data
+	for (let i = 0; i < userArr.length; i++) {
+			data = newArr[i].split(' ').join('_');
+			if(data.includes('.')){
+				data = data.split('.').join('_');
+			}
+			userArr[i].dataset.value = data;
+			userArr[i].append(newArr[i])
+	}
 });
 
 
@@ -23,7 +45,7 @@ let drake = dragula([containerTdo, containerInProgress, containerDone]);
 
 drake.on('drop', function(el, target, source, sibling) {
    if (target === containerInProgress && target.children.length >= 6) {
-      $('.ui.modal.pop-up__inprogress').modal({blurring: true}).modal('show');
+      $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show');
    }
 });
 
@@ -44,8 +66,8 @@ searchModul.forEach(it => {
 				item.style.display = 'none';
 			} else {
 				item.style.display = 'block';
-			};
-		};
+			}
+		}
 	});
 });
 
@@ -95,16 +117,6 @@ btnAdd.addEventListener('click', () => {
 	$('.ui.dropdown').dropdown();
 })
 
-// Edit todo
-
-const btnEditModal = document.querySelectorAll('.card__todo-edit').length;
-for(let i = 0; i < btnEditModal; i++) {
-	document.querySelectorAll('.card__todo-edit')[i].addEventListener('click', () => {
-		$('.ui.modal.add__todo').modal({blurring: true}).modal('show');
-		$('.ui.dropdown').dropdown();
-	})
-}
-
 
 const checkTodos = () => {
 	const cards = storage.getDataByKey('cards');
@@ -116,11 +128,16 @@ const checkTodos = () => {
 	}
 }
 
-
+const currentUser = $('#selection').dropdown('get value');
+console.log(currentUser)
 
 approveBtn.addEventListener('click', () => {
 	const currentUser = $('#selection').dropdown('get value');
-	const el = document.querySelector(`[data-value = ${currentUser}]`);
+	let currentName = currentUser.split(' ').join('_');
+	if(currentName.includes('.')){
+		currentName = currentName.split('.').join('_');
+	}
+	const el = document.querySelector(`[data-value = ${currentName}]`);
 	const img = el.querySelector('.ui.mini.avatar.image').src;
 	const todoUser = el.textContent;
 	const todoId = Date.now();
@@ -155,6 +172,11 @@ root.addEventListener('click', (event) => {
 			localStorage.clear();
 			trelloId.remove()
 		}
+	} if (event.target.dataset.type === 'edit-card') {
+		const clicked = event.target.closest('.card__todo');
+		console.log(clicked)
+		$('.ui.modal.add__todo').modal({blurring: true}, {allowMultiple: true}).modal('show');
+		$('.ui.dropdown').dropdown();
 	}
 })
 

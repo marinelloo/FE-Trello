@@ -404,3 +404,12 @@ i.icon {
 	font-size: 19px;
 }
 
+.ui.dropdown>.text {
+	display: flex;
+	align-items: center;
+}
+
+.ui.dropdown .menu .active.item {
+	display: flex;
+	align-items: center;
+}

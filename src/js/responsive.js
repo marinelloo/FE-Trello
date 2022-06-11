@@ -34,8 +34,7 @@ export const swiperMode = () => {
             let cardCheck = document.querySelectorAll('.card__todo');
             cardCheck.forEach(card => {
                 card.addEventListener('touchmove', (event) => {
-                    console.log('drag')
-                    swiper.slideNext(4000, false)
+                    swiper.slideNext(4000, false);
                 })
             })
         }
