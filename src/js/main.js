@@ -55,6 +55,17 @@ drake.on('drop', function(el, target, source, sibling) {
    }
 });
 
+
+// Philippov drop
+drake.on('drop', function(el, target, source, sibling) {
+   if (target === containerInProgress && target.children.length >= 6) {
+      $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show');
+   }
+});
+
+
+
+
 // Search
 
 const searchModul = document.querySelectorAll('.search__box');
