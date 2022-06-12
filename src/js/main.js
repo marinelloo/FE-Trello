@@ -57,11 +57,17 @@ drake.on('drop', function(el, target, source, sibling) {
 
 
 // Philippov drop
+
 drake.on('drop', function(el, target, source, sibling) {
    if (target === containerInProgress && target.children.length >= 6) {
       $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show');
-   }
+   } else if(target === containerTdo) {
+		console.log(localStorage)
+		}
+	// storage.pushDataByKey('cards', todo);
 });
+
+// console.log(localStorage)
 
 
 
