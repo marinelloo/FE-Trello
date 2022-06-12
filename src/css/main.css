@@ -413,3 +413,7 @@ i.icon {
 	display: flex;
 	align-items: center;
 }
+
+.drop-edit {
+	width: 100%;
+}

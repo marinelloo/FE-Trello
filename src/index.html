@@ -154,38 +154,31 @@
 		</div>
 	</div>
 <!-- Open modal edit card -->
-<div class="ui modal edit__todo">
+<div class="ui modal add__todo" id="modal_edit">
+	<div class="gradient-line"></div>
 	<div class="header">Edit ToDo</div>
 	<div class="content">
 		<form class="ui form">
 			<div class="required field">
-				<label>Title</label>
-				<input type="text" name="title" placeholder="Title">
+				<input type="text" name="title" placeholder="Title" id="title-edit">
 			</div>
 			<div class="required field">
-				<label>Description</label>
-				<textarea rows="2" name="description" placeholder="Description"></textarea>
+				<textarea class="input-description" rows="5" name="description" placeholder="Description" id="desc-edit"></textarea>
 			</div>
 		</form>
 	</div>
 	<div class="actions">
-		<div class="ui fluid selection dropdown user-select">
-			<input type="hidden" name="user">
-			<i class="dropdown icon"></i>
-			<div class="default text">Select Friend</div>
-			<div class="menu">
-				<div class="item" data-value="jenny">
-					<img class="ui mini avatar image" src="./images/jenny.jpeg">
-					Jenny Hess
-				</div>
-				<div class="item" data-value="elliot">
-					<img class="ui mini avatar image" src="./images/elliot.jpeg">
-					Elliot Fu
+			<div class="edit ui fluid selection dropdown user-select" id="dropdown-edit">
+				<input type="hidden" name="user">
+				<i class="dropdown icon"></i>
+				<div class="default text">Select Friend</div>
+				<div class="menu" id="menu-edit">
 				</div>
 			</div>
+		<div class="button-agreement">
+			<div class="ui cancel button">Cancel</div>
+			<div class="ui approve button" id="editBtn">Edit</div>
 		</div>
-		<div class="ui cancel button">Cancel</div>
-		<div class="ui approve button">Confirm</div>
 	</div>
 </div>
 	<div class="ui modal add__todo" id="modal_add">
@@ -205,7 +198,7 @@
 			</form>
 		</div>
 		<div class="actions">
-			<div class="ui fluid selection dropdown user-select" id="selection">
+			<div class="add ui fluid selection dropdown user-select" id="selection">
 				<input type="hidden" name="user">
 				<i class="dropdown icon"></i>
 				<div class="default text">Select User</div>

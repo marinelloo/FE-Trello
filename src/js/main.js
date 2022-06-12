@@ -1,6 +1,6 @@
 import {swiperMode} from './responsive.js'
 import {createTodo} from './createCard.js'
-import {randomNum, userAvatar, userName} from './usersGenerate.js'
+import {randomNum, userAvatar, userAvatarEdit, userName} from './usersGenerate.js'
 
 
 // on load
@@ -16,9 +16,17 @@ window.addEventListener('resize', function() {
 
 for (let i = 0; i < 6; i++) {
 	userAvatar(i);
+	userAvatarEdit(i)
 }
 
-let userArr = document.querySelectorAll('.item');
+
+
+let userArr = document.getElementById('menu').children;
+let userArrEdit = document.getElementById('menu-edit').children;
+
+
+console.log(userArr)
+console.log(userArrEdit)
 
 userName().then(users => {
 	let newArr = users.map(user => user.name);
@@ -29,7 +37,9 @@ userName().then(users => {
 				data = data.split('.').join('_');
 			}
 			userArr[i].dataset.value = data;
+			userArrEdit[i].dataset.value = data;
 			userArr[i].append(newArr[i])
+			userArrEdit[i].append(newArr[i])
 	}
 });
 
@@ -113,7 +123,7 @@ const btnAdd = document.getElementById('btn-add');
 btnAdd.addEventListener('click', () => {
 	inputTitle.value = '';
 	inputDescription.value = '';
-	$('.ui.modal.add__todo').modal({ blurring: true }, { allowMultiple: true}).modal('show');
+	$('#modal_add').modal({ blurring: true }, { allowMultiple: true}).modal('show');
 	$('.ui.dropdown').dropdown();
 })
 
@@ -129,7 +139,7 @@ const checkTodos = () => {
 }
 
 const currentUser = $('#selection').dropdown('get value');
-console.log(currentUser)
+
 
 approveBtn.addEventListener('click', () => {
 	const currentUser = $('#selection').dropdown('get value');
@@ -138,14 +148,14 @@ approveBtn.addEventListener('click', () => {
 		currentName = currentName.split('.').join('_');
 	}
 	const el = document.querySelector(`[data-value = ${currentName}]`);
-	const img = el.querySelector('.ui.mini.avatar.image').src;
+	const userImage = el.firstChild;
+	const imgAvatar = userImage.src;
 	const todoUser = el.textContent;
 	const todoId = Date.now();
 
-	console.log(currentUser)
-
-	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, img, todoUser, todoId);
-	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, img, todoUser, todoId));
+	console.log(imgAvatar)
+	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId);
+	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId));
 	todos.push(todo);
 	storage.pushDataByKey('cards', todo);
 })
@@ -173,10 +183,67 @@ root.addEventListener('click', (event) => {
 			trelloId.remove()
 		}
 	} if (event.target.dataset.type === 'edit-card') {
+		const inputTitle = document.getElementById('title-edit');
+		const inputDescription = document.getElementById('desc-edit');
+		const editBtn = document.getElementById('editBtn');
 		const clicked = event.target.closest('.card__todo');
-		console.log(clicked)
-		$('.ui.modal.add__todo').modal({blurring: true}, {allowMultiple: true}).modal('show');
-		$('.ui.dropdown').dropdown();
+		const editedTodo = todos.find(todo => +todo.todoId === +clicked.dataset.trelloId);
+		const clickedName = clicked.querySelector('.todo__user-name').textContent;
+		let currentName = clickedName.split(' ').join('_');
+		if(currentName.includes('.')){
+			currentName = currentName.split('.').join('_');
+		}
+
+		let dropdownDefault = document.querySelector(`[data-value = ${currentName}]`).firstChild;
+		let img = dropdownDefault.src
+
+		$('#modal_edit').modal({blurring: true}, {allowMultiple: true}).modal('show');
+		$('.ui.dropdown').dropdown('set text', `<img class="ui mini avatar image" src= ${img}> ${clickedName}`)
+		let elCurrent = document.querySelector(`[data-value = ${currentName}]`);
+		let changedVal = elCurrent;
+
+		$('#dropdown-edit').dropdown({
+			'set value': `${clickedName}`,
+			onChange: function (value1) {
+				changedVal = value1;
+				return changedVal;
+			}
+		});
+
+
+		inputTitle.value = clicked.querySelector('.card__todo-title').textContent;
+		inputDescription.value = clicked.querySelector('.todo-description').textContent;
+
+		let clickedImg = clicked.querySelector('.card__todo-author');
+		let clickedUser = clicked.querySelector('.todo__user-name');
+
+		editBtn.addEventListener('click', () => {
+			clicked.querySelector('.card__todo-title').textContent = inputTitle.value;
+			clicked.querySelector('.todo-description').textContent = inputDescription.value;
+
+			if ( changedVal !== elCurrent) {
+				let extractImg = document.querySelector(`[data-value = ${changedVal}]`);
+				clickedImg.src = extractImg.querySelector('.ui.mini.avatar.image').src;
+				clickedUser.textContent = extractImg.textContent;
+
+			} else {
+				clickedImg.src = elCurrent.querySelector('.ui.mini.avatar.image').src;
+				clickedUser.textContent = elCurrent.textContent;
+			}
+			console.log(clicked);
+			for (const todo of todos) {
+				if (+todo.todoId === + clicked.dataset.trelloId) {
+					todo.todoTitle = inputTitle.value;
+					todo.todoDescription = inputDescription.value;
+					todo.todoImg = clickedImg.src;
+					todo.todoUser = clickedUser.textContent;
+				}
+			}
+			localStorage.setItem('cards', JSON.stringify(todos));
+			console.log(todos)
+			console.log(editedTodo)
+		})
+
 	}
 })
 
