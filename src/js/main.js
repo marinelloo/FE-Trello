@@ -63,7 +63,7 @@ const cardTodoColumn = document.querySelector('.dashboard__cards-todo');
 const doneColumn = document.querySelector('.dashboard__cards-done');
 
 
-console.log(todos)
+
 const checkTodos = () => {
 	const cards = storage.getDataByKey('cards');
 	if (cards) {
@@ -92,7 +92,7 @@ let drake = dragula([containerTdo, containerInProgress, containerDone]);
 
 drake.on('drop', function(el, target, source, sibling) {
    if (target === containerInProgress && target.children.length >= 6) {
-      $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show');
+      $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show')
    }
 	for (const todo of todos) {
 		if (+todo.todoId === +el.dataset.trelloId) {
@@ -151,32 +151,63 @@ const btnAdd = document.getElementById('btn-add');
 btnAdd.addEventListener('click', () => {
 	inputTitle.value = '';
 	inputDescription.value = '';
-	$('#modal_add').modal({ blurring: true }, { allowMultiple: true}).modal('show');
+	$('#modal_add').modal({ blurring: true }, { allowMultiple: true}).modal('show').modal({
+		onApprove : function() {
+			$('#form-add').submit();
+			return false;
+		}})
+
+	let formSettings = {
+			onSuccess : function()
+			{
+				$('.modal').modal('hide');
+			}
+	}
+	$('#form-add').form(formSettings);
 	$('.ui.dropdown').dropdown('restore defaults');
 })
-
-
 
 
 //Create trello card
 
 approveBtn.addEventListener('click', () => {
-	const currentUser = $('#selection').dropdown('get value');
-	let currentName = currentUser.split(' ').join('_');
-	if(currentName.includes('.')){
-		currentName = currentName.split('.').join('_');
-	}
-	const el = document.querySelector(`[data-value = ${currentName}]`);
-	const userImage = el.firstChild;
-	const imgAvatar = userImage.src;
-	const todoUser = el.textContent;
-	const todoId = Date.now();
-	const column = "1";
+	if (inputTitle.value === '' && inputDescription.value === ''){
+		$('#form-add').form({
+			fields: {
+				title: 'empty',
+				description: 'empty',
+			},
+		})
+	} else if (inputTitle.value === '') {
+		$('#form-add').form({
+			fields: {
+				title: 'empty',
+			}
+		})
+	} else if (inputDescription.value === ''){
+		$('#form-add').form({
+			fields: {
+				description: 'empty'
+			}
+		})
+	} else {
+		const currentUser = $('#selection').dropdown('get value');
+		let currentName = currentUser.split(' ').join('_');
+		if(currentName.includes('.')){
+			currentName = currentName.split('.').join('_');
+		}
+		const el = document.querySelector(`[data-value = ${currentName}]`);
+		const userImage = el.firstChild;
+		const imgAvatar = userImage.src;
+		const todoUser = el.textContent;
+		const todoId = Date.now();
+		const column = "1";
 
-	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column);
-	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column));
-	todos.push(todo);
-	storage.pushDataByKey('cards', todo);
+		const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column);
+		cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column));
+		todos.push(todo);
+		storage.pushDataByKey('cards', todo);
+	}
 })
 
 

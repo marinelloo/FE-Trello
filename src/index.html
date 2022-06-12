@@ -144,13 +144,13 @@
 		<div class="gradient-line"></div>
 		<div class="header">Create Trello Card</div>
 		<div class="content">
-			<form class="ui form">
-				<div class="required field">
-					<input type="text" name="title" placeholder="Title" class="input-title" id="inputTitle">
+			<form class="ui form add" id="form-add">
+				<div class="field">
+					<input type="text" name="title" placeholder="Title" class="input-title" id="inputTitle" required>
 				</div>
-				<div class="required field">
+				<div class="field">
 					<textarea class="input-description" rows="5" name="description" placeholder="Description"
-							  id="inputDescription"></textarea>
+							  id="inputDescription" required></textarea>
 				</div>
 			</form>
 		</div>
@@ -163,7 +163,7 @@
 		</div>
 			<div class="button-agreement">
 				<div class="ui cancel button">Cancel</div>
-				<div class="positive ui approve button" id="approveBtn">Confirm</div>
+				<div class="positive ok ui approve button" id="approveBtn">Confirm</div>
 			</div>
 	</div>
 </div>
