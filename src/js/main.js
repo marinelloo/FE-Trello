@@ -13,20 +13,16 @@ window.addEventListener('resize', function() {
 	swiperMode();
 });
 
-
+// Generate Avatars for modals
 for (let i = 0; i < 6; i++) {
 	userAvatar(i);
 	userAvatarEdit(i)
 }
 
 
-
+// Generate user name for modals
 let userArr = document.getElementById('menu').children;
 let userArrEdit = document.getElementById('menu-edit').children;
-
-
-console.log(userArr)
-console.log(userArrEdit)
 
 userName().then(users => {
 	let newArr = users.map(user => user.name);
@@ -58,7 +54,6 @@ drake.on('drop', function(el, target, source, sibling) {
       $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show');
    }
 });
-
 
 // Search
 
@@ -138,8 +133,8 @@ const checkTodos = () => {
 	}
 }
 
-const currentUser = $('#selection').dropdown('get value');
 
+//Create trello card
 
 approveBtn.addEventListener('click', () => {
 	const currentUser = $('#selection').dropdown('get value');
@@ -153,7 +148,6 @@ approveBtn.addEventListener('click', () => {
 	const todoUser = el.textContent;
 	const todoId = Date.now();
 
-	console.log(imgAvatar)
 	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId);
 	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId));
 	todos.push(todo);
@@ -187,7 +181,6 @@ root.addEventListener('click', (event) => {
 		const inputDescription = document.getElementById('desc-edit');
 		const editBtn = document.getElementById('editBtn');
 		const clicked = event.target.closest('.card__todo');
-		const editedTodo = todos.find(todo => +todo.todoId === +clicked.dataset.trelloId);
 		const clickedName = clicked.querySelector('.todo__user-name').textContent;
 		let currentName = clickedName.split(' ').join('_');
 		if(currentName.includes('.')){
@@ -210,7 +203,6 @@ root.addEventListener('click', (event) => {
 			}
 		});
 
-
 		inputTitle.value = clicked.querySelector('.card__todo-title').textContent;
 		inputDescription.value = clicked.querySelector('.todo-description').textContent;
 
@@ -230,7 +222,6 @@ root.addEventListener('click', (event) => {
 				clickedImg.src = elCurrent.querySelector('.ui.mini.avatar.image').src;
 				clickedUser.textContent = elCurrent.textContent;
 			}
-			console.log(clicked);
 			for (const todo of todos) {
 				if (+todo.todoId === + clicked.dataset.trelloId) {
 					todo.todoTitle = inputTitle.value;
@@ -240,8 +231,6 @@ root.addEventListener('click', (event) => {
 				}
 			}
 			localStorage.setItem('cards', JSON.stringify(todos));
-			console.log(todos)
-			console.log(editedTodo)
 		})
 
 	}
