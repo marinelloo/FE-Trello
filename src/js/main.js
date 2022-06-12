@@ -39,6 +39,44 @@ userName().then(users => {
 	}
 });
 
+const storage = {
+	// Получить все данные из хранилки по ключу
+	getDataByKey: function (key) {
+		if (localStorage.getItem(key) !== null) {
+			return JSON.parse(localStorage.getItem(key));
+		} else {
+			return [];
+		}
+	},
+	// Добавить данные по ключу
+	pushDataByKey: function (key, data) {
+		let dataByKey = this.getDataByKey(key);
+		dataByKey = [...dataByKey, data];
+		localStorage.setItem(key, JSON.stringify(dataByKey));
+	},
+};
+
+
+let todos =  [];
+
+const inProgressColumn = document.querySelector('.dashboard__cards-inProgress');
+const cardTodoColumn = document.querySelector('.dashboard__cards-todo');
+
+const checkTodos = () => {
+	const cards = storage.getDataByKey('cards');
+	if (cards) {
+		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId, card.todoColumn))];
+	}
+	for(let i = 0; i < todos.length; i++){
+		if (todos[i].todoColumn === 1) {
+			console.log('1')
+			cardTodoColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
+		} else if (todos[i].todoColumn === 2) {
+			console.log('2')
+			inProgressColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
+		}
+	}
+}
 
 // DragNDrop
 
@@ -53,7 +91,15 @@ drake.on('drop', function(el, target, source, sibling) {
    if (target === containerInProgress && target.children.length >= 6) {
       $('.ui.modal.pop-up__inprogress').modal({blurring: true}, {observeChanges: true}).modal('show');
    }
+	for (const todo of todos) {
+		if (+todo.todoId === +el.dataset.trelloId) {
+			todo.todoColumn = target.dataset.columnId
+		}
+	}
+	localStorage.setItem('cards', JSON.stringify(todos));
 });
+
+
 
 // Search
 
@@ -79,32 +125,16 @@ searchModul.forEach(it => {
 
 //Add New card
 
-const TodoConstructor = function (todoTitle, todoDescription, todoImg, todoUser, todoId) {
+const TodoConstructor = function (todoTitle, todoDescription, todoImg, todoUser, todoId, todoColumn) {
 	this.todoTitle = todoTitle;
 	this.todoDescription = todoDescription;
 	this.todoImg = todoImg;
 	this.todoUser = todoUser;
 	this.todoId = todoId;
+	this.todoColumn = todoColumn;
 }
 
-const storage = {
-	// Получить все данные из хранилки по ключу
-	getDataByKey: function (key) {
-		if (localStorage.getItem(key) !== null) {
-			return JSON.parse(localStorage.getItem(key));
-		} else {
-			return [];
-		}
-	},
-	// Добавить данные по ключу
-	pushDataByKey: function (key, data) {
-		let dataByKey = this.getDataByKey(key);
-		dataByKey = [...dataByKey, data];
-		localStorage.setItem(key, JSON.stringify(dataByKey));
-	},
-};
 
-let todos =  [];
 
 //Get access
 const approveBtn = document.getElementById("approveBtn");
@@ -123,15 +153,6 @@ btnAdd.addEventListener('click', () => {
 })
 
 
-const checkTodos = () => {
-	const cards = storage.getDataByKey('cards');
-	if (cards) {
-		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId))];
-	}
-	for(let i = 0; i < todos.length; i++){
-		cardTodo.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId));
-	}
-}
 
 
 //Create trello card
@@ -147,9 +168,10 @@ approveBtn.addEventListener('click', () => {
 	const imgAvatar = userImage.src;
 	const todoUser = el.textContent;
 	const todoId = Date.now();
+	const column = 1;
 
-	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId);
-	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId));
+	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column);
+	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column));
 	todos.push(todo);
 	storage.pushDataByKey('cards', todo);
 })
@@ -199,6 +221,7 @@ root.addEventListener('click', (event) => {
 			'set value': `${clickedName}`,
 			onChange: function (value1) {
 				changedVal = value1;
+				console.log(changedVal)
 				return changedVal;
 			}
 		});
@@ -250,7 +273,5 @@ btnDeleteAll.addEventListener("click", (event) => {
 	} else {
 		return containerDone;
 	}
-});
-
-
+})
 

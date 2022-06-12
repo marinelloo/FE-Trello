@@ -57,7 +57,7 @@
 				<div class="dashboard__content">
 					<h2 class="title1 dashboard__title">To Do</h2>
 				</div>
-				<div class="dashboard__cards-todo" id="todoCase">
+				<div class="dashboard__cards-todo" id="todoCase" data-column-id = '1'>
 					<div class="card__todo">
 						<div class="card_top">
 							<h3 class="card__todo-title title4">Title for ToDo</h3>
@@ -85,7 +85,7 @@
 						<div class="dashboard__content">
 							<h2 class="title1 dashboard__title">In Progress</h2>
 						</div>
-						<div class="dashboard__cards-inProgress">
+						<div class="dashboard__cards-inProgress" data-column-id = '2'>
 							<div class="card__todo" draggable="true" ondragstart="drag">
 									<div class="card_top">
 										<h3 class="card__todo-title title4">Title for ToDo</h3>
@@ -111,7 +111,7 @@
 						<div class="dashboard__content">
 							<h2 class="title1 dashboard__title">Done</h2>
 						</div>
-						<div class="dashboard__cards-done"></div>
+						<div class="dashboard__cards-done" data-column-id = '3'></div>
 						<button class="btn__dashboard btn__delete">Delete all</button>
 			</div>
 			</div>
@@ -148,8 +148,8 @@
 			</div>
 			</div>
 			<div class="actions pop-up__buttons-wrap">
-				<button class="negative ui button btn-inprogress--light">Cancel</button>
-				<button class="positive ui button btn-inprogress--dark">Confirm</button>
+				<button class="negative ui button btn-inprogress--light" id="cancel-move">Cancel</button>
+				<button class="positive ui button btn-inprogress--dark" id="confirm-move">Confirm</button>
 			</div>
 		</div>
 	</div>
@@ -198,12 +198,11 @@
 			</form>
 		</div>
 		<div class="actions">
-			<div class="add ui fluid selection dropdown user-select" id="selection">
+			<div class="add ui fluid selection dropdown user-select required field" id="selection">
 				<input type="hidden" name="user">
-				<i class="dropdown icon"></i>
-				<div class="default text">Select User</div>
-				<div class="menu" id="menu">
-			</div>
+					<i class="dropdown icon"></i>
+					<div class="default text">Select User</div>
+					<div class="menu" id="menu"></div>
 		</div>
 			<div class="button-agreement">
 				<div class="ui cancel button">Cancel</div>
