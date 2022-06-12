@@ -61,6 +61,7 @@ let todos =  [];
 
 const inProgressColumn = document.querySelector('.dashboard__cards-inProgress');
 const cardTodoColumn = document.querySelector('.dashboard__cards-todo');
+const doneColumn = document.querySelector('.dashboard__cards-done');
 
 const checkTodos = () => {
 	const cards = storage.getDataByKey('cards');
@@ -68,12 +69,12 @@ const checkTodos = () => {
 		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId, card.todoColumn))];
 	}
 	for(let i = 0; i < todos.length; i++){
-		if (todos[i].todoColumn === 1) {
-			console.log('1')
+		if (todos[i].todoColumn == 1) {
 			cardTodoColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
-		} else if (todos[i].todoColumn === 2) {
-			console.log('2')
+		} else if (todos[i].todoColumn == 2) {
 			inProgressColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
+		} else if (todos[i].todoColumn == 3) {
+			doneColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
 		}
 	}
 }
