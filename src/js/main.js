@@ -24,6 +24,7 @@ for (let i = 0; i < 6; i++) {
 let userArr = document.getElementById('menu').children;
 let userArrEdit = document.getElementById('menu-edit').children;
 
+
 userName().then(users => {
 	let newArr = users.map(user => user.name);
 	let data
@@ -39,8 +40,8 @@ userName().then(users => {
 	}
 });
 
+
 const storage = {
-	// Получить все данные из хранилки по ключу
 	getDataByKey: function (key) {
 		if (localStorage.getItem(key) !== null) {
 			return JSON.parse(localStorage.getItem(key));
@@ -48,7 +49,6 @@ const storage = {
 			return [];
 		}
 	},
-	// Добавить данные по ключу
 	pushDataByKey: function (key, data) {
 		let dataByKey = this.getDataByKey(key);
 		dataByKey = [...dataByKey, data];
@@ -56,27 +56,29 @@ const storage = {
 	},
 };
 
-
 let todos =  [];
 
 const inProgressColumn = document.querySelector('.dashboard__cards-inProgress');
 const cardTodoColumn = document.querySelector('.dashboard__cards-todo');
 const doneColumn = document.querySelector('.dashboard__cards-done');
 
+
+console.log(todos)
 const checkTodos = () => {
 	const cards = storage.getDataByKey('cards');
 	if (cards) {
 		todos = [...todos, ...cards.map(card => new TodoConstructor(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId, card.todoColumn))];
 	}
-	for(let i = 0; i < todos.length; i++){
-		if (todos[i].todoColumn == 1) {
-			cardTodoColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
-		} else if (todos[i].todoColumn == 2) {
-			inProgressColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
-		} else if (todos[i].todoColumn == 3) {
-			doneColumn.append(createTodo(todos[i].todoTitle, todos[i].todoDescription, todos[i].todoImg, todos[i].todoUser, todos[i].todoId, todos[i].todoColumn));
+	for (const card of cards) {
+		if (+card.todoColumn === +cardTodoColumn.dataset.columnId) {
+			cardTodoColumn.append(createTodo(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId, card.todoColumn));
+		} else if (+card.todoColumn === +inProgressColumn.dataset.columnId) {
+			inProgressColumn.append(createTodo(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId, card.todoColumn));
+		} else if (+card.todoColumn === +doneColumn.dataset.columnId) {
+			doneColumn.append(createTodo(card.todoTitle, card.todoDescription, card.todoImg, card.todoUser, card.todoId, card.todoColumn));
 		}
 	}
+
 }
 
 // DragNDrop
@@ -150,7 +152,7 @@ btnAdd.addEventListener('click', () => {
 	inputTitle.value = '';
 	inputDescription.value = '';
 	$('#modal_add').modal({ blurring: true }, { allowMultiple: true}).modal('show');
-	$('.ui.dropdown').dropdown();
+	$('.ui.dropdown').dropdown('restore defaults');
 })
 
 
@@ -169,7 +171,7 @@ approveBtn.addEventListener('click', () => {
 	const imgAvatar = userImage.src;
 	const todoUser = el.textContent;
 	const todoId = Date.now();
-	const column = 1;
+	const column = "1";
 
 	const todo = new TodoConstructor(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column);
 	cardTodo.append(createTodo(inputTitle.value, document.getElementById('inputDescription').value, imgAvatar, todoUser, todoId, column));
@@ -180,12 +182,12 @@ approveBtn.addEventListener('click', () => {
 
 // Pop ups
 
+checkTodos();
 
 let btnDeleteAll = document.querySelector('.btn__delete');
 let btnDeleteConfirm = document.querySelector('.btn--dark');
 let dashboardDone = document.querySelector('.dashboard__cards-done');
 
-checkTodos();
 
 root.addEventListener('click', (event) => {
 	if (event.target.dataset.type === 'delete-one') {
@@ -263,7 +265,7 @@ root.addEventListener('click', (event) => {
 
 btnDeleteConfirm.addEventListener("click", (event) => {
 		$('.ui.modal.pop-up__delete-all').modal({blurring: true}).modal('show');
-		todos = [];
+		todos = todos.filter(todo => +todo.todoColumn !== +doneColumn.dataset.columnId);
 		dashboardDone.innerHTML = '';
 		localStorage.setItem("cards", JSON.stringify(todos));
 });

@@ -244,7 +244,6 @@ i.icon {
 	transition: 0.3s;
 	color: #5e6472;
 }
-/* Стили для карточки в InProgress */
 
 .card__todo {
 	background-color: white;
@@ -390,7 +389,6 @@ i.icon {
 }
 .ui.modal.add__todo{
 	border-radius: 20px;
-	/*overflow: hidden;*/
 }
 
 .ui.modal>.actions{
