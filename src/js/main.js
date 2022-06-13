@@ -246,7 +246,19 @@ root.addEventListener('click', (event) => {
 		let dropdownDefault = document.querySelector(`[data-value = ${currentName}]`).firstChild;
 		let img = dropdownDefault.src
 
-		$('#modal_edit').modal({blurring: true}, {allowMultiple: true}).modal('show');
+		$('#modal_edit').modal({blurring: true}, {allowMultiple: true}).modal('show').modal({
+			onApprove : function() {
+				$('#form-edit').submit();
+				return false;
+			}})
+		let formSettings = {
+			onSuccess : function()
+			{
+				$('#modal_edit').modal('hide');
+			}
+		}
+		$('#form-edit').form(formSettings);
+
 		$('.ui.dropdown').dropdown('set text', `<img class="ui mini avatar image" src= ${img}> ${clickedName}`)
 		let elCurrent = document.querySelector(`[data-value = ${currentName}]`);
 		let changedVal = elCurrent;
@@ -267,27 +279,48 @@ root.addEventListener('click', (event) => {
 		let clickedUser = clicked.querySelector('.todo__user-name');
 
 		editBtn.addEventListener('click', () => {
-			clicked.querySelector('.card__todo-title').textContent = inputTitle.value;
-			clicked.querySelector('.todo-description').textContent = inputDescription.value;
-
-			if ( changedVal !== elCurrent) {
-				let extractImg = document.querySelector(`[data-value = ${changedVal}]`);
-				clickedImg.src = extractImg.querySelector('.ui.mini.avatar.image').src;
-				clickedUser.textContent = extractImg.textContent;
-
+			if (inputTitle.value === '' && inputDescription.value === ''){
+				$('#form-edit').form({
+					fields: {
+						title: 'empty',
+						description: 'empty',
+					},
+				})
+			} else if (inputTitle.value === '') {
+				$('#form-edit').form({
+					fields: {
+						title: 'empty',
+					}
+				})
+			} else if (inputDescription.value === ''){
+				$('#form-edit').form({
+					fields: {
+						description: 'empty'
+					}
+				})
 			} else {
-				clickedImg.src = elCurrent.querySelector('.ui.mini.avatar.image').src;
-				clickedUser.textContent = elCurrent.textContent;
-			}
-			for (const todo of todos) {
-				if (+todo.todoId === + clicked.dataset.trelloId) {
-					todo.todoTitle = inputTitle.value;
-					todo.todoDescription = inputDescription.value;
-					todo.todoImg = clickedImg.src;
-					todo.todoUser = clickedUser.textContent;
+				clicked.querySelector('.card__todo-title').textContent = inputTitle.value;
+				clicked.querySelector('.todo-description').textContent = inputDescription.value;
+
+				if (changedVal !== elCurrent) {
+					let extractImg = document.querySelector(`[data-value = ${changedVal}]`);
+					clickedImg.src = extractImg.querySelector('.ui.mini.avatar.image').src;
+					clickedUser.textContent = extractImg.textContent;
+
+				} else {
+					clickedImg.src = elCurrent.querySelector('.ui.mini.avatar.image').src;
+					clickedUser.textContent = elCurrent.textContent;
 				}
+				for (const todo of todos) {
+					if (+todo.todoId === +clicked.dataset.trelloId) {
+						todo.todoTitle = inputTitle.value;
+						todo.todoDescription = inputDescription.value;
+						todo.todoImg = clickedImg.src;
+						todo.todoUser = clickedUser.textContent;
+					}
+				}
+				localStorage.setItem('cards', JSON.stringify(todos));
 			}
-			localStorage.setItem('cards', JSON.stringify(todos));
 		})
 
 	}
